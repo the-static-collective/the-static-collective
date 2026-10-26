@@ -8,6 +8,9 @@ For books before they have readers. For machines before they have purposes. For 
 
 **We do not pretend those things already exist. We prepare places where they may begin.**
 
+**[Enter Becoming →](https://becoming.abundent.org/)** · [Explore the open chairs](https://becoming.abundent.org/doors/) · [Read the machine book](https://becoming.abundent.org/books/)
+
+
 The Static Collective is a public creative and research laboratory making **music, software, books, research instruments, playable worlds, community tools, and strangely named machines**. It is also an experiment in how new projects and, sometimes, independent organizations might emerge from useful work—without having to belong to one central institution.
 
 Our recurring question:
@@ -50,6 +53,7 @@ Our ambition is not to own everything that grows here. It is to make worthwhile 
 
 | If you want to… | Open this |
 |---|---|
+| explore organizations that don't exist yet | **[Becoming](https://becoming.abundent.org/)** — the working identity, six open-chair proposals, and local-first invitation cards |
 | walk into the public workbench | **[Abundent](https://abundent.org/)** — a living entryway into the work |
 | find a book for an unexpected kind of reader | **[lemonPRESS](https://github.com/the-static-collective/lemonPRESS)** · [Books for Computers](https://abundent.org/for-computers/) |
 | explore source relationships without collapsing ownership | **[GRAFT](https://github.com/the-static-collective/GRAFT)** — independent source cuts and their provenance |
