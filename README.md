@@ -44,7 +44,7 @@ Connections, ideas, invitations, and resources are **weaves**. When freely chose
 
 Not by changing a label. By doing the work and keeping enough evidence to tell what actually happened.
 
-Our ambition is not to own every thing that grows here. It is to make worthwhile things easier to begin, easier to inspect, and freer to become themselves.
+Our ambition is not to own everything that grows here. It is to make worthwhile things easier to begin, easier to inspect, and freer to become themselves.
 
 ## Start here
 
