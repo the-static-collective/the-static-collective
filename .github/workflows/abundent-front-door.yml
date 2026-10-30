@@ -1,0 +1,22 @@
+name: Abundent front door
+on:
+  pull_request:
+    paths:
+      - 'front-door/**'
+      - '.github/workflows/abundent-front-door.yml'
+  push:
+    paths:
+      - 'front-door/**'
+      - '.github/workflows/abundent-front-door.yml'
+jobs:
+  static-contract:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Human / machine split and staging gates
+        run: cd front-door && python -m unittest discover -s tests -v
