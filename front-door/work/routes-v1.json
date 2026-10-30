@@ -1,0 +1,430 @@
+{
+  "schema": "abundent/operator-routes-v1",
+  "reviewedOn": "2026-10-30",
+  "status": "CURATED_SOURCE_ROUTES_NO_LIVE_EXECUTION",
+  "disclosure": "An operator-facing bridge to separate source-owned capabilities. Links may point to open draft pull requests, released software, documentation or separately deployed protected services. A link is not execution, permission, availability, adoption or verified field work.",
+  "capabilityStates": [
+    "HERE_STAGED",
+    "PUBLIC_SOURCE",
+    "DRAFT_REVIEW",
+    "DOCUMENTED_IMPLEMENTATION",
+    "BACKEND_REVIEW_GATED",
+    "RELEASED_SOFTWARE",
+    "CONFIGURED_HOST_UNVERIFIED_HTTP"
+  ],
+  "capabilities": [
+    {
+      "id": "porch",
+      "label": "The human Porch",
+      "state": "HERE_STAGED",
+      "openUrl": "/porch/",
+      "sourceUrl": "https://github.com/the-static-collective/the-static-collective/pull/5",
+      "boundary": "A private note, first move, optional return. Separate review intake needs explicit consent.",
+      "kind": "note"
+    },
+    {
+      "id": "first-inch",
+      "label": "First Inch planner",
+      "state": "DRAFT_REVIEW",
+      "openUrl": "https://github.com/the-static-collective/webZ/pull/202",
+      "sourceUrl": "https://github.com/the-static-collective/webZ/pull/202",
+      "boundary": "Six bounded candidate actions, no live feasibility claim.",
+      "kind": "plan"
+    },
+    {
+      "id": "jarvis",
+      "label": "JAR;VIS public research",
+      "state": "PUBLIC_SOURCE",
+      "openUrl": "https://github.com/the-static-collective/JAR-VIS/blob/main/commons/recent-work-v1.json",
+      "sourceUrl": "https://github.com/the-static-collective/JAR-VIS/blob/main/commons/recent-work-v1.json",
+      "boundary": "Dated editorial source context, not a helper directory or private operator execution.",
+      "kind": "research"
+    },
+    {
+      "id": "planz",
+      "label": "planZ open gates",
+      "state": "PUBLIC_SOURCE",
+      "openUrl": "https://github.com/the-static-collective/planZ/blob/main/public/attention-v1.json",
+      "sourceUrl": "https://github.com/the-static-collective/planZ/blob/main/public/attention-v1.json",
+      "boundary": "Documented blockers and human next gates; execution not authorized.",
+      "kind": "research"
+    },
+    {
+      "id": "graft",
+      "label": "GRAFT public source and field kits",
+      "state": "DOCUMENTED_IMPLEMENTATION",
+      "openUrl": "https://github.com/the-static-collective/GRAFT",
+      "sourceUrl": "https://github.com/the-static-collective/GRAFT",
+      "boundary": "Operator/local source scout and printable kit prototypes; not an active field service.",
+      "kind": "plan"
+    },
+    {
+      "id": "nourish",
+      "label": "Nourish Kids and Second Table",
+      "state": "DRAFT_REVIEW",
+      "openUrl": "https://github.com/the-static-collective/webZ/pull/211",
+      "sourceUrl": "https://github.com/the-static-collective/webZ/pull/212",
+      "boundary": "A source-native food/dinner proof path, not an enrolled family or operating provider.",
+      "kind": "food"
+    },
+    {
+      "id": "garden",
+      "label": "Garden Signal",
+      "state": "BACKEND_REVIEW_GATED",
+      "openUrl": "https://github.com/the-static-collective/webZ/pull/120",
+      "sourceUrl": "https://github.com/the-static-collective/webZ/pull/120",
+      "boundary": "Documented deployed review intake and public empty-or-reviewed feed; independent organizers retain authority.",
+      "kind": "food"
+    },
+    {
+      "id": "sevendays",
+      "label": "One Table, Seven Days",
+      "state": "BACKEND_REVIEW_GATED",
+      "openUrl": "https://garden.abundent.org/seven",
+      "sourceUrl": "https://github.com/the-static-collective/webZ/pull/121",
+      "boundary": "Invited, privacy-scoped table; no automatic participant enrollment or mass outreach.",
+      "kind": "gather"
+    },
+    {
+      "id": "sixhands",
+      "label": "Six Hands field kit",
+      "state": "DRAFT_REVIEW",
+      "openUrl": "https://github.com/the-static-collective/webZ/pull/182",
+      "sourceUrl": "https://github.com/the-static-collective/webZ/pull/182",
+      "boundary": "ASK → ANSWER → SCOPE → ACT → independent CONFIRM → permitted RETURN. No completed real-world case.",
+      "kind": "work"
+    },
+    {
+      "id": "banana",
+      "label": "BananaSpork accountable work",
+      "state": "DOCUMENTED_IMPLEMENTATION",
+      "openUrl": "https://github.com/the-static-collective/BananaSpork",
+      "sourceUrl": "https://github.com/the-static-collective/BananaSpork",
+      "boundary": "Authenticated lifecycle exists in source; field two-person isolation and physical proof unfinished.",
+      "kind": "work"
+    },
+    {
+      "id": "commuter",
+      "label": "reLATTE COMMUTER",
+      "state": "DOCUMENTED_IMPLEMENTATION",
+      "openUrl": "https://github.com/the-static-collective/reLATTE/blob/main/docs/COMMUTER-001.md",
+      "sourceUrl": "https://github.com/the-static-collective/reLATTE/blob/main/docs/COMMUTER-001.md",
+      "boundary": "Signed test crossing for farm correspondence; not connected to live farm email.",
+      "kind": "farm"
+    },
+    {
+      "id": "postoffice",
+      "label": "Post Office reviewed sending",
+      "state": "DRAFT_REVIEW",
+      "openUrl": "https://github.com/the-static-collective/webZ/pull/170",
+      "sourceUrl": "https://github.com/the-static-collective/webZ/pull/170",
+      "boundary": "Operator-approved outbound email architecture; no automatic recipient send.",
+      "kind": "farm"
+    },
+    {
+      "id": "workboard",
+      "label": "Workboard moderated history",
+      "state": "BACKEND_REVIEW_GATED",
+      "openUrl": "https://github.com/the-static-collective/webZ/pull/126",
+      "sourceUrl": "https://github.com/the-static-collective/webZ/pull/126",
+      "boundary": "Moderated Supabase preview, no verified human review staffing or partner affiliation.",
+      "kind": "gather"
+    },
+    {
+      "id": "inbox",
+      "label": "Living Inbox",
+      "state": "BACKEND_REVIEW_GATED",
+      "openUrl": "https://github.com/the-static-collective/webZ/pull/167",
+      "sourceUrl": "https://github.com/the-static-collective/webZ/pull/169",
+      "boundary": "Separate owner/reviewer/submitter capabilities with deployed backend; not verified real-world delivery.",
+      "kind": "gather"
+    },
+    {
+      "id": "campfire",
+      "label": "Campfire choice and return",
+      "state": "DRAFT_REVIEW",
+      "openUrl": "https://github.com/the-static-collective/webZ/pull/124",
+      "sourceUrl": "https://github.com/the-static-collective/webZ/pull/124",
+      "boundary": "Self-chosen role and voluntary trial concept, not organization membership.",
+      "kind": "gather"
+    },
+    {
+      "id": "seats",
+      "label": "Open Seats blocker invitations",
+      "state": "DRAFT_REVIEW",
+      "openUrl": "https://github.com/the-static-collective/webZ/pull/129",
+      "sourceUrl": "https://github.com/the-static-collective/webZ/pull/129",
+      "boundary": "Invite a missing capability without granting access or appointing anyone.",
+      "kind": "gather"
+    },
+    {
+      "id": "crossings",
+      "label": "Crossings public-only handoff",
+      "state": "DRAFT_REVIEW",
+      "openUrl": "https://github.com/the-static-collective/webZ/pull/140",
+      "sourceUrl": "https://github.com/the-static-collective/webZ/pull/138",
+      "boundary": "Validated public-only same-origin navigation; no cross-domain user data transfer.",
+      "kind": "work"
+    },
+    {
+      "id": "wallet",
+      "label": "Link Wallet",
+      "state": "DOCUMENTED_IMPLEMENTATION",
+      "openUrl": "https://github.com/the-static-collective/webZ/pull/171",
+      "sourceUrl": "https://github.com/the-static-collective/webZ/pull/172",
+      "boundary": "Local encrypted keyring prototype; secrets never passed automatically by this desk.",
+      "kind": "work"
+    },
+    {
+      "id": "usefirst",
+      "label": "Use a Tool shelf",
+      "state": "DRAFT_REVIEW",
+      "openUrl": "https://github.com/the-static-collective/webZ/pull/204",
+      "sourceUrl": "https://github.com/the-static-collective/webZ/pull/204",
+      "boundary": "Task-first route to separately existing demos and official released application.",
+      "kind": "media"
+    },
+    {
+      "id": "toaster",
+      "label": "Haunted Toaster published Windows alpha",
+      "state": "RELEASED_SOFTWARE",
+      "openUrl": "https://github.com/the-static-collective/the-haunted-toaster/releases/tag/v0.5.0-alpha.8",
+      "sourceUrl": "https://github.com/the-static-collective/webZ/pull/204",
+      "boundary": "Published unsigned Windows alpha; do not confuse with unmerged newer versions.",
+      "kind": "media"
+    },
+    {
+      "id": "threebells",
+      "label": "Three Bells finite arcade",
+      "state": "DRAFT_REVIEW",
+      "openUrl": "https://github.com/the-static-collective/webZ/pull/205",
+      "sourceUrl": "https://github.com/the-static-collective/webZ/pull/205",
+      "boundary": "Exactly three local gifts, no feed or automatic attention capture.",
+      "kind": "media"
+    },
+    {
+      "id": "timeback",
+      "label": "TIMEBACK song-to-film recipes",
+      "state": "DRAFT_REVIEW",
+      "openUrl": "https://github.com/the-static-collective/webZ/pull/207",
+      "sourceUrl": "https://github.com/the-static-collective/webZ/pull/207",
+      "boundary": "Local FFmpeg pipeline with explicit operator input; not a live public render service.",
+      "kind": "media"
+    },
+    {
+      "id": "press",
+      "label": "LemonPRESS printing and publishing",
+      "state": "DOCUMENTED_IMPLEMENTATION",
+      "openUrl": "https://github.com/the-static-collective/lemonPRESS",
+      "sourceUrl": "https://github.com/the-static-collective/lemonPRESS/pull/66",
+      "boundary": "Source-owned print and artifact workflows; print proof is not publication.",
+      "kind": "media"
+    },
+    {
+      "id": "cannon",
+      "label": "CANNON composition",
+      "state": "DRAFT_REVIEW",
+      "openUrl": "https://github.com/the-static-collective/CANNON/pull/90",
+      "sourceUrl": "https://github.com/the-static-collective/CANNON/pull/90",
+      "boundary": "Native multi-owner creative recipes with review gates; no auto-executing webpage.",
+      "kind": "research"
+    },
+    {
+      "id": "storyship",
+      "label": "Storyship narrative justice",
+      "state": "DRAFT_REVIEW",
+      "openUrl": "https://github.com/the-static-collective/STORYSHIP/pull/9",
+      "sourceUrl": "https://github.com/the-static-collective/STORYSHIP/pull/9",
+      "boundary": "Narrative rights and witness constraints; stories require author authorization.",
+      "kind": "story"
+    },
+    {
+      "id": "storydoor",
+      "label": "Narrative doorway",
+      "state": "DRAFT_REVIEW",
+      "openUrl": "https://github.com/the-static-collective/webZ/pull/213",
+      "sourceUrl": "https://github.com/the-static-collective/webZ/pull/213",
+      "boundary": "Static witness/possible/made/encounter navigation, not publication without consent.",
+      "kind": "story"
+    },
+    {
+      "id": "revival",
+      "label": "Revival inheritance constellation",
+      "state": "DRAFT_REVIEW",
+      "openUrl": "https://github.com/the-static-collective/revival/pull/16",
+      "sourceUrl": "https://github.com/the-static-collective/revival/pull/16",
+      "boundary": "Source-backed unresolved composition candidates, not live community outcomes.",
+      "kind": "research"
+    },
+    {
+      "id": "ghot",
+      "label": "GHoT local energy/compute laboratory",
+      "state": "DOCUMENTED_IMPLEMENTATION",
+      "openUrl": "https://github.com/the-static-collective/GHoT",
+      "sourceUrl": "https://github.com/the-static-collective/GHoT",
+      "boundary": "Energy/computing source research; site does not control physical equipment.",
+      "kind": "research"
+    },
+    {
+      "id": "bridge",
+      "label": "Between Rooms / institutional applications",
+      "state": "DRAFT_REVIEW",
+      "openUrl": "https://github.com/the-static-collective/webZ/pull/180",
+      "sourceUrl": "https://github.com/the-static-collective/webZ/pull/210",
+      "boundary": "Application/outreach desk and source-backed proposals; no contact or award implied.",
+      "kind": "grant"
+    },
+    {
+      "id": "stranger",
+      "label": "Stranger Gauntlet",
+      "state": "DRAFT_REVIEW",
+      "openUrl": "https://github.com/the-static-collective/webZ/pull/209",
+      "sourceUrl": "https://github.com/the-static-collective/webZ/pull/209",
+      "boundary": "Critical review of claims and readiness, not independent grant feedback.",
+      "kind": "grant"
+    },
+    {
+      "id": "switchboard",
+      "label": "Abundent Switchboard alternative host",
+      "state": "CONFIGURED_HOST_UNVERIFIED_HTTP",
+      "openUrl": "https://abundent-switchboard.vercel.app/",
+      "sourceUrl": "https://github.com/the-static-collective/webZ/pull/154",
+      "boundary": "Vercel project hostname assigned; apps.abundent.org DNS mismatch; HTTP reachability not independently confirmed.",
+      "kind": "site"
+    }
+  ],
+  "journeys": [
+    {
+      "id": "application",
+      "label": "Prepare an application or institutional introduction",
+      "need": "Turn one wide project into a short, verifiable first proposal.",
+      "cue": "Try: Explain the first six-month Abundent pilot for an independent reviewer.",
+      "capabilities": [
+        "bridge",
+        "stranger",
+        "planz",
+        "jarvis",
+        "sixhands"
+      ],
+      "start": "Write the one human problem, one modest pilot, what you can already demonstrate, and the next permission you need. Keep funding and partner claims conditional.",
+      "gate": "The recipient institution must actually invite or accept the proposal; the selected local provider must consent to a pilot.",
+      "template": "Application one-page working brief"
+    },
+    {
+      "id": "food",
+      "label": "Move one useful food idea toward a real table",
+      "need": "Make one bounded food/supply action possible without pretending partners are enrolled.",
+      "cue": "Try: Ask a Waseca organizer whether a 2-hour safe tabletop pilot would be useful.",
+      "capabilities": [
+        "nourish",
+        "garden",
+        "sixhands",
+        "banana",
+        "planz"
+      ],
+      "start": "Describe one non-sensitive food access question, the smallest safe test, and who would need to approve it before anything is distributed.",
+      "gate": "A real food host/receiver must approve scope and food safety; completed delivery needs independent confirmation.",
+      "template": "Food/table pilot inquiry"
+    },
+    {
+      "id": "farm",
+      "label": "Connect a grower, newsletter, or small business workflow",
+      "need": "Prepare one provider-neutral farm-to-email crossing without guessing system permissions.",
+      "cue": "Try: Connect a grower's order changes to an opt-in email update.",
+      "capabilities": [
+        "commuter",
+        "postoffice",
+        "inbox",
+        "jarvis"
+      ],
+      "start": "Identify the source system, the email provider, the exact consented event, and who owns permission to transmit each field.",
+      "gate": "The farm operator must authorize both systems, data fields, recipients and opt-out policy before activating an adapter.",
+      "template": "Farm communication requirements card"
+    },
+    {
+      "id": "community",
+      "label": "Invite help or organize one small community action",
+      "need": "Get from a question or obstacle to a voluntary, bounded ask.",
+      "cue": "Try: Find a willing reviewer for a privacy-safe neighborhood task.",
+      "capabilities": [
+        "seats",
+        "campfire",
+        "sevendays",
+        "workboard",
+        "sixhands",
+        "crossings"
+      ],
+      "start": "State the smallest useful role with a specific time limit, right to refuse, and exactly what remains under the receiving organization's control.",
+      "gate": "A willing participant must accept; private submissions require review and third-party organizations retain their own authority.",
+      "template": "Voluntary first-circle invitation"
+    },
+    {
+      "id": "media",
+      "label": "Make music, print, or a small creative artifact",
+      "need": "Choose a real source-owned tool and finish a bounded artifact.",
+      "cue": "Try: Make a 30-second music film from a song I have rights to use.",
+      "capabilities": [
+        "usefirst",
+        "toaster",
+        "timeback",
+        "press",
+        "threebells",
+        "cannon"
+      ],
+      "start": "Pick one owned/licensed input, one output format, and the smallest reproducible test. Use a source-owned renderer rather than claiming a webpage launched it.",
+      "gate": "Input rights, official binary/platform support and explicit publication approval remain with the human creator.",
+      "template": "Creative production brief"
+    },
+    {
+      "id": "website",
+      "label": "Repair the site or make its tools easier to reach",
+      "need": "Find the actual serving host, choose one broken path, and validate without surprising DNS changes.",
+      "cue": "Try: Resolve the apps.abundent.org routing mismatch and check mobile routes.",
+      "capabilities": [
+        "porch",
+        "switchboard",
+        "first-inch",
+        "crossings",
+        "jarvis",
+        "stranger"
+      ],
+      "start": "Name one exact broken route, verify DNS target against the intended host, inspect a real unauthenticated response, and log a reproducible before/after observation.",
+      "gate": "Hosting and DNS changes require explicit operator choice, rollback plan, validation and preservation of mail records.",
+      "template": "Site release/repair checklist"
+    },
+    {
+      "id": "story",
+      "label": "Preserve a story or build an author-approved narrative",
+      "need": "Separate a witness, a possible interpretation and a finished creation.",
+      "cue": "Try: Package a non-sensitive personal witness into a rights-respecting story seed.",
+      "capabilities": [
+        "storyship",
+        "storydoor",
+        "jarvis",
+        "press",
+        "cannon"
+      ],
+      "start": "Define whose account it is, what may be quoted, which details must remain private, and what remains disputed or unknown.",
+      "gate": "Author rights, privacy and separate publication permission precede any outward adaptation.",
+      "template": "Narrative provenance card"
+    },
+    {
+      "id": "systems",
+      "label": "Research and compose the workshop itself",
+      "need": "Compare source owners and build one falsifiable, reversible, cross-repository experiment.",
+      "cue": "Try: Compare GRAFT, CANNON, planZ and reLATTE on one explicit contract.",
+      "capabilities": [
+        "graft",
+        "cannon",
+        "planz",
+        "jarvis",
+        "revival",
+        "ghot",
+        "sixhands"
+      ],
+      "start": "Pin exact input source commits, name one interface each owner actually exports, declare a test fixture, and say what output would falsify the planned crossing.",
+      "gate": "Source test success does not grant a receiver authority, canonical adoption or physical field proof.",
+      "template": "Cross-repo experiment brief"
+    }
+  ]
+}
