@@ -30,21 +30,43 @@ const kindMoves=Object.freeze({
     proof:"Useful progress: one sourced answer, an informed correction, or an explicit remaining unknown."
   }
 });
-export function makeNextMove(prepared) {
+// An attention window is a temporary condition, not a score or a personal identity.
+const attentionModes=Object.freeze({
+  glance:{label:"Half a minute",seconds:30,
+    need:"Put the specific help you need into one sentence. You can keep it private.",
+    offer:"Name one small thing you could freely share, without promising it yet.",
+    question:"Write down the one question that matters most right now."},
+  few:{label:"A few minutes",seconds:300},
+  longer:{label:"A little more room",seconds:1200,
+    need:"Prepare the smallest safe request: what would help, when it matters, and what someone may freely decline. Do not send it until you choose to.",
+    offer:"Make a small trial offer with a clear limit on your time or resources. Ask what would actually be useful before taking action.",
+    question:"Identify one checkable answer, a relevant source, and the first assumption that might be wrong. Preserve uncertainty."}
+});
+const flowLabels=Object.freeze({need:"Something coming in",offer:"Something going out",question:"Something to understand"});
+export function makeNextMove(prepared,{attention="few"}={}) {
   if (!prepared || !Object.hasOwn(kindMoves, prepared.kind) || typeof prepared.particular !== "string" || prepared.particular.trim().length < 8) {
     throw new Error("Make a valid porch note first.");
   }
+  if (!Object.hasOwn(attentionModes,attention)) throw new Error("Choose a valid attention window.");
+  const mode=attentionModes[attention];
   const topic=topics.find(t=>t.pattern.test(prepared.particular)) || null;
   const kind=kindMoves[prepared.kind];
-  const first=prepared.next?.trim()
-    ? "Start with the small step you named: "+prepared.next.trim()
-    : topic?.first || kind.start;
+  const namedStep=prepared.next?.trim();
+  const ordinaryFirst=topic?.first || kind.start;
+  // A visitor's own step outranks a suggestion. At a glance, preserve it for later,
+  // rather than pretending a longer action fits a 30-second window.
+  const first=namedStep
+    ? attention==="glance"
+      ? "Keep this next step for when you have room: "+namedStep+" No action or contact is required now."
+      : "Start with the small step you named: "+namedStep
+    : attention==="few" ? ordinaryFirst : mode[prepared.kind];
   const returnRule="Afterward, record only what you actually know: DONE, NOT YET, DECLINED, or UNKNOWN. Do not call a plan completed without confirmation.";
   const lines=[
     "ABUNDENT / A SMALL NEXT MOVE",
     "Local suggestion · not sent · not a match · not a commitment",
+    "Right now: "+flowLabels[prepared.kind]+" · "+mode.label,
     "",
-    "YOUR NEXT TEN MINUTES",
+    "ONE MOVE THAT FITS YOUR ATTENTION",
     first,
     "",
     "WHAT WOULD COUNT AS PROGRESS",
@@ -61,5 +83,5 @@ export function makeNextMove(prepared) {
     "",
     "This plan was assembled from visible local rules, not from live AI or a directory of available helpers."
   ];
-  return Object.freeze({topic:topic?.name||"general",first,progress:kind.proof,boundary:topic?.boundary||"Ask permission. Share only what is necessary. A suggestion or invitation is not another person's consent.",text:lines.join("\n")});
+  return Object.freeze({topic:topic?.name||"general",flow:prepared.kind,attention,attentionSeconds:mode.seconds,first,progress:kind.proof,boundary:topic?.boundary||"Ask permission. Share only what is necessary. A suggestion or invitation is not another person's consent.",text:lines.join("\n")});
 }
