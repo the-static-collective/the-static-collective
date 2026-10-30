@@ -20,3 +20,16 @@
 .attention-window .help-text{margin-bottom:0}
 @media(max-width:590px){.attention-grid{display:grid;grid-template-columns:1fr}.attention-grid label{width:100%}}
 @media print{.attention-window{display:none!important}}
+
+/* INTEREST-ROADS-005: source documents, not humans or live matching. */
+.interest-roads{margin:26px 0;border:2px solid #97ad92;background:#f2f5e9;padding:19px 20px}
+.interest-roads h3{font-size:24px;letter-spacing:-.025em;margin:0 0 8px}
+.interest-roads p{font-size:15px;line-height:1.5}
+.road-results{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.road-card{min-width:0;background:#fffdfa;border:1px solid #b4c1af;padding:16px 16px 13px}
+.road-card h4{font-size:17px;line-height:1.3;margin:0 0 10px}
+.road-card .road-state{font-size:12px;font-weight:750;text-transform:uppercase;letter-spacing:.02em;color:#4b6952}
+.road-card .road-disclaimer{font-size:12px;color:#475d4f}
+.road-card .road-links{font-size:13px;line-height:1.5;margin-bottom:0}
+.road-card a{font-weight:750;text-decoration:underline;text-underline-offset:3px}
+@media print{.interest-roads{display:none!important}}
