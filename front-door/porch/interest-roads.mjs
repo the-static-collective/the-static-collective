@@ -1,6 +1,17 @@
 // INTEREST-ROADS-005: source-owned documents only, never human matching.
 export const ROAD_SCHEMA="abundent/interest-roads-v1";
 const ignored=new Set(["community","help","local","people","person","support","care","work","group","new","start","resources","resource","service"]);
+// Cross-project technical maps only surface when the visitor actually asks about that
+// instrument, not merely because its source catalog mentions food, music, or a town.
+const instrumentTriggers=Object.freeze({
+  "ATLAS-BRIDGE-002":["atlas","ghot","compute","loadout","cannon","graft","source"],
+  "BRIDGE-001":["bridge","institution","institutions","mit","rockefeller","grant"],
+  "PLANZ-001":["planz","planning","plans","backlog","blocker","census"],
+  "WEVES-001":["weaves","weves","commitment","receipt","review","verification"],
+  "SWITCHBOARD-001":["switchboard","website","apps","directory","navigate"],
+  "COMMUTER-001":["commuter","integration","sync","grownby","email","crm","automation","newsletter"],
+  "SUITCASE-001":["suitcase","offline","campus","university","mobile","node"]
+});
 const aliases=new Map([
   ["bread","food"],["loaf","food"],["loaves","food"],["vegetable","food"],
   ["vegetables","food"],["produce","food"],["groceries","food"],
@@ -38,16 +49,19 @@ export function selectInterestRoads(prepared,catalog,{maxExperiments=3,maxQuesti
  // Only voluntary topical text, never area, contact information, browser location, identity, or backend lookup.
  const q=tokens(prepared.particular+" "+(typeof prepared.next==="string"?prepared.next.slice(0,220):""));
  const scored=[];
- for(const e of catalog.entries){
+ for(const [index,e] of catalog.entries.entries()){
    const matched=e.tags.filter(t=>{
      const a=normalize(t).split(/\s+/u).filter(Boolean);
      return a.length>0&&!a.every(w=>ignored.has(w))&&a.every(w=>q.has(w));
    });
    if(!matched.length)continue;
+   const triggers=instrumentTriggers[e.id];
+   if(triggers && !matched.some(t=>triggers.includes(normalize(t))))continue;
    const score=matched.reduce((n,t)=>n+(normalize(t).includes(" ")?5:2),0);
-   scored.push({...e,matched:matched.slice(0,3),score});
+   scored.push({...e,matched:matched.slice(0,3),score,index});
  }
- scored.sort((a,b)=>b.score-a.score||a.title.localeCompare(b.title)||a.id.localeCompare(b.id));
+ // Ties preserve the source author's editorial ordering rather than arbitrary alphabetic wins.
+ scored.sort((a,b)=>b.score-a.score||a.index-b.index);
  const experiments=scored.filter(x=>x.lane==="experiment").slice(0,Math.max(0,Math.min(5,maxExperiments)));
  const questions=scored.filter(x=>x.lane==="question").slice(0,Math.max(0,Math.min(2,maxQuestions)));
  return {experiments,questions,reviewedOn:catalog.sources.map(x=>x.reviewedOn).sort()[0],sourceEditions:catalog.sources.map(x=>x.edition)};
