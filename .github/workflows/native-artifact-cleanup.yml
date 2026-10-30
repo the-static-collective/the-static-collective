@@ -1,0 +1,22 @@
+name: Remove unsafe synthetic CI artifact 010
+on:
+  push:
+    branches: ['feature/native-output-makers-010']
+    paths: ['.github/workflows/native-artifact-cleanup.yml']
+permissions:
+  contents: none
+  actions: write
+jobs:
+  remove-one-stale-artifact:
+    if: github.repository == 'the-static-collective/the-static-collective'
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: Delete exact earlier generated artifact with synthetic ephemeral private-key fixtures
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: the-static-collective/the-static-collective
+        run: |
+          # No source checkout, no external scripts, no arbitrary artifact selection.
+          # This removes ONLY the previous unrestricted test artifact.
+          gh api --method DELETE "repos/$GH_REPO/actions/artifacts/13018280050"
