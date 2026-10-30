@@ -51,11 +51,15 @@ export function makeNextMove(prepared,{attention="few"}={}) {
   const mode=attentionModes[attention];
   const topic=topics.find(t=>t.pattern.test(prepared.particular)) || null;
   const kind=kindMoves[prepared.kind];
-  const ordinaryFirst=prepared.next?.trim()
-    ? "Start with the small step you named: "+prepared.next.trim()
-    : topic?.first || kind.start;
-  // Short and long windows suggest preparation only; no model, remote match or automatic contact.
-  const first=attention==="few" ? ordinaryFirst : mode[prepared.kind];
+  const namedStep=prepared.next?.trim();
+  const ordinaryFirst=topic?.first || kind.start;
+  // A visitor's own step outranks a suggestion. At a glance, preserve it for later,
+  // rather than pretending a longer action fits a 30-second window.
+  const first=namedStep
+    ? attention==="glance"
+      ? "Keep this next step for when you have room: "+namedStep+" No action or contact is required now."
+      : "Start with the small step you named: "+namedStep
+    : attention==="few" ? ordinaryFirst : mode[prepared.kind];
   const returnRule="Afterward, record only what you actually know: DONE, NOT YET, DECLINED, or UNKNOWN. Do not call a plan completed without confirmation.";
   const lines=[
     "ABUNDENT / A SMALL NEXT MOVE",
