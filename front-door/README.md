@@ -1,6 +1,6 @@
 # FRONT-DOOR-002 — Abundent human-first entrance
 
-A small, independent static site whose deployment must be distinct from webZ. It lives in the Collective identity repository at `front-door/` (not the webZ source tree) and requires no accounts, API keys, JavaScript runtime, analytics, form backend, tracking cookies, or package installation.
+A small, independent static site whose deployment must be distinct from webZ. It lives in the Collective identity repository at `front-door/` (not the webZ source tree) and requires no accounts, API keys, server-side runtime, third-party JS, analytics, form backend, tracking cookies, or package installation. The human porch uses a small first-party client-side JavaScript note composer; no drafts are transmitted or persisted.
 
 ## Local run
 
@@ -9,11 +9,12 @@ cd front-door
 python3 -m http.server 8080
 # Open http://localhost:8080/
 python3 -m unittest discover -s tests -v
+node --test porch/engine.test.mjs
 ```
 
 ## Human / computer contract
 
-The visible homepage asks a particular, immediate question and offers exactly three choices (need, offer, explore). The third choice is an internal two-minute overview. Human pages speak plainly; computer discovery files point to source-owned technical books. Linked apps keep their separate identity, status and authority. A mailto link only drafts an email. No website action claims that someone has offered help, agreed to steward a task, or performed work.
+The visible homepage asks a particular, immediate question and offers exactly three choices (need, offer, explore). Need and offer enter the new [human porch](porch/), which turns a thought into a portable note with explicit human-controlled copy, save, or email action. It is deliberately distinct from webZ's offline sovereign-world invitation rehearsal. See [HUMAN-PORCH-002](docs/HUMAN-PORCH-002.md). The third choice is an internal two-minute overview. Human pages speak plainly; computer discovery files point to source-owned technical books. Linked apps keep their separate identity, status and authority. A mailto link only drafts an email. No website action claims that someone has offered help, agreed to steward a task, or performed work.
 
 ## Status and promotion gate
 
