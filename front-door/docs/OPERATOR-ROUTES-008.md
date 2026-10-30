@@ -70,3 +70,15 @@ The goal is **one useful task actually finished faster**, not ten more orchestra
 ## Deployment
 
 This is stacked on staged identity Front Door PRs #1–6. No apex promotion, GitHub Pages switch, production mail or DNS change, Supabase migration, third-party partner outreach or account authorization. The source GitHub workflow is a code/test receipt, not evidence that the public site was used. Finish mobile, actual-host HTTP and rollback checks before making `/work/` a public promise.
+
+## CROSS-ROOM-009 — proven compatible with the original webZ receiver (staging)
+
+The Work Desk includes an **optional explicit public-only ticket export** that follows the actual source-owned `abundent/public-crossing/v0` schema from [webZ CROSSINGS-032](https://github.com/the-static-collective/webZ/pull/138), original source commit `963b047a414a5822a82681fd838dfdadeb5c8c41`.
+
+The visitor must separately select an allowed public `topic` and `capacity`, then acknowledge this is a proposed-only local export. The converter only sees those two enumerated values and the current date; **it does not touch the personal work brief, private Porch submission, email, source URL, location or receipt**.
+
+Original exact keys, allowed topics and actions, all-false `authority` flags, `PROPOSED_UNSENT` standing, and `EDITORIAL_ONLY` status match the original webZ source. Native CI checks out that **exact original webZ commit** and runs `readCrossing`, `makeCrossing` and `makeReturn` from its original `ask-jarvis/public/crossings/model.mjs` against every emitted topic/action combination, including rejection of forged authority/private-field mutations.
+
+This is a **real original-source compatibility test**, not a hypothetical interface written from documentation alone. It still only proves safe portable file interoperability, not a deployed recipient importing it, approval, cross-domain session continuity, or completed useful work. The original receiving UI remains source-owned. A user may manually carry the downloaded public ticket into the separate receiving experiment when actually available; it is never transmitted automatically.
+
+The source pin is intentional; changing it requires new owner review and an explicit interoperability regression, not silently substituting the webZ branch tip.
