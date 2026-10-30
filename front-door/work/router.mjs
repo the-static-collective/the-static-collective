@@ -43,7 +43,7 @@ export function makeWorkLaunch({journeyId,particular,attention="few"},catalog){
  checkRoutes(catalog);
  if(typeof particular!=="string"||particular.trim().length<8||particular.length>420)throw Error("Describe the particular job in 8–420 characters.");
  // This is explicitly an exportable operator brief; block obvious credentials and contact data.
- if(/(?:[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}|\b(?:api[_-]?key|bearer\s+[A-Za-z0-9_-]+|password\s*[:=]|secret\s*[:=])\b)/i.test(particular))throw Error("Remove email addresses, credentials or secrets from this exportable brief.");
+ if(/(?:[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}|\b(?:api[_-]?key|password|secret)\b\s*[:=]|\bbearer\s+[A-Za-z0-9_-]{6,})/i.test(particular))throw Error("Remove email addresses, credentials or secrets from this exportable brief.");
  const journey=catalog.journeys.find(x=>x.id===journeyId);
  if(!journey)throw Error("Choose one available job.");
  if(!["glance","few","longer"].includes(attention))throw Error("Choose a valid attention window.");
