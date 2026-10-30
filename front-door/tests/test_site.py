@@ -23,7 +23,7 @@ class TestSite(unittest.TestCase):
     self.assertEqual(t.scripts,['application/ld+json'])
     self.assertIn('noindex,nofollow',s)
   def test_machine_boundary(self):
-    for f in ['for-computers/index.html','llms.txt','.well-known/abundent.json','robots.txt','style.css','explore/index.html','porch/index.html','porch/engine.mjs','porch/app.mjs','porch/porch.css','porch/engine.test.mjs']:
+    for f in ['for-computers/index.html','llms.txt','.well-known/abundent.json','robots.txt','style.css','explore/index.html','porch/index.html','porch/engine.mjs','porch/app.mjs','porch/porch.css','porch/engine.test.mjs','porch/private-inbox.mjs']:
       self.assertTrue((root/f).exists(),f)
     data=json.loads((root/'.well-known/abundent.json').read_text())
     self.assertEqual(data['status'],'PUBLIC_STAGING_CANDIDATE')
@@ -40,7 +40,12 @@ class TestSite(unittest.TestCase):
     for term in ['id="porch-form"','id="note-preview"','id="result"','id="copy-note"','id="save-note"','id="email-note"']:
       self.assertIn(term,s)
     script=(root/'porch/app.mjs').read_text()
-    self.assertNotIn('fetch(',script)
+    self.assertNotIn('localStorage',script)
+    self.assertIn('installPrivateReceiver',script)
+    self.assertIn('id="send-private"',s)
+    self.assertIn('id="private-consent"',s)
+    self.assertIn('id="check-receipt"',s)
+    self.assertIn('id="withdraw-receipt"',s)
     self.assertNotIn('localStorage',script)
 
 if __name__=='__main__': unittest.main()
