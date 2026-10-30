@@ -33,3 +33,8 @@
 .road-card .road-links{font-size:13px;line-height:1.5;margin-bottom:0}
 .road-card a{font-weight:750;text-decoration:underline;text-underline-offset:3px}
 @media print{.interest-roads{display:none!important}}
+
+.interest-roads{padding:15px 19px}
+.interest-roads summary{cursor:pointer;font-weight:800;font-size:19px;line-height:1.35;outline-offset:4px}
+.interest-roads summary:focus-visible{outline:3px solid #a65f2f}
+.interest-roads details[open] summary{margin-bottom:13px}
