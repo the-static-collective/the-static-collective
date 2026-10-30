@@ -32,6 +32,15 @@
        <label class="intent-choice"><input type="radio" name="kind" value="question"><span><strong>I noticed something.</strong><small>A question or a problem worth exploring.</small></span></label>
      </div>
    </fieldset>
+   <fieldset class="attention-window">
+     <legend>How much room do you have right now? <small>(just for this suggestion)</small></legend>
+     <div class="attention-grid">
+       <label><input type="radio" name="attention" value="glance"><span>Half a minute</span></label>
+       <label><input type="radio" name="attention" value="few" checked><span>A few minutes</span></label>
+       <label><input type="radio" name="attention" value="longer"><span>A little more room</span></label>
+     </div>
+     <p class="help-text">No score, countdown, or commitment. Change this whenever you want. It only shapes the private suggestion on your screen; it is not included in the note you share.</p>
+   </fieldset>
    <div class="form-section">
     <label for="particular"><span class="step">02</span> <strong id="what-label">What would help?</strong></label>
     <p class="help-text" id="what-help">A simple sentence is enough. For example: “I'd like someone to help me figure out where to start.”</p>
@@ -68,8 +77,8 @@
    <p>Maybe to a neighbor, a friend, a local group, or to us. Sharing is your decision.</p>
    <pre id="note-preview" class="note-preview"></pre>
    <section class="next-move" aria-labelledby="next-move-heading">
-     <h3 id="next-move-heading">One useful move before anybody replies.</h3>
-     <p>A tiny, rule-guided ten-minute plan based on your note. It runs in this browser. It does not search for helpers, ask an AI, or promise a result.</p>
+     <h3 id="next-move-heading">One small move that fits your moment.</h3>
+     <p>A transparent, rule-guided suggestion based on what you're dealing with and how much attention you have. It runs in this browser, not an AI or a matching system. You can stop right here.</p>
      <pre id="next-move-preview" class="note-preview"></pre>
      <button id="copy-next-move" class="porch-secondary" type="button">Copy my next move</button>
      <p id="next-move-status" class="help-text" role="status" aria-live="polite">This plan hasn't gone anywhere.</p>
