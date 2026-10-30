@@ -30,3 +30,8 @@ This remains part of `front-door/` in the original draft PR and on `hello.abunde
 ## Future crossing
 
 If a true moderated inbox becomes appropriate: independent backend project, informed consent, abuse mitigation, controls for sensitive cases, human moderation, retention/deletion policy, clear expectations and verified reply path. No silent autopublishing and no false promises.
+
+
+## Private voluntary review loop (PORCH-RECEIVER-009)
+
+An additional opt-in **Send privately for review** button now sends bounded public-safe notes to a separate Supabase Edge Function (`porch-receiver-009`) with explicit consent. The service returns a receipt ID and a one-time private key. A visitor may copy/save it, then later check the real stored status or withdraw and delete. Receiving is real; matching, email notification, publishing, and fulfilling work are NOT implemented. No browser autosave. JAR;VIS's existing login-scoped operator desk can review and prepare a safe status reply, but will not automatically send it. See JAR;VIS `docs/PORCH-RECEIVER-009.md` for provider and retention details. This is separate from the email draft and webZ rehearsal.
