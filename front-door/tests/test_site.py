@@ -20,7 +20,7 @@ class TestSite(unittest.TestCase):
     self.assertIn('/explore/',t.links)
     self.assertIn('/for-computers/',t.links)
     self.assertIn('/porch/?kind=offer',t.links)
-    self.assertEqual(t.scripts,['application/ld+json'])
+    self.assertCountEqual(t.scripts,['application/ld+json','module'])
     self.assertIn('noindex,nofollow',s)
   def test_machine_boundary(self):
     for f in ['for-computers/index.html','llms.txt','.well-known/abundent.json','robots.txt','style.css','explore/index.html','porch/index.html','porch/engine.mjs','porch/app.mjs','porch/porch.css','porch/engine.test.mjs','porch/private-inbox.mjs','feedback/index.html','feedback/widget.mjs','feedback/widget.css','try/index.html','try/demo.mjs','doors/index.html']:
