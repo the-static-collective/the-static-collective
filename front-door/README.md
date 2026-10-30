@@ -56,3 +56,13 @@ After preparing one small move, a visitor can optionally record **I tried / Not 
 [Read the evidence-based operator inventory](docs/WEBSITE-CONVERGENCE-007.md). A source audit of the last two weeks found overlapping webZ FIRST-INCH, FIELD-RETURN, THREE BELLS, USE-FIRST, CROSSINGS, Living Inbox, Workboard, Garden, and creative production functionality; these must be compared and composed before making yet another competing front door. Existing open PRs are not production releases.
 
 **One small staged routing repair:** the `/doors/` Switchboard card now clearly calls out a confirmed `apps.abundent.org` DNS/hosting mismatch and offers its separately Vercel-verified `abundent-switchboard.vercel.app` project hostname as an untested alternate. No DNS, project alias, backend or mail configuration was changed; actual unauthenticated HTTP behavior still needs manual checking.
+
+## OPERATOR-ROUTES-008 · Pick the job, open the source-owned machines (staging)
+
+The optional, account-free `/work/` **Work Desk** translates a real non-sensitive objective into a small, portable, source-linked action brief using the existing Porch next-move engine, a curated and status-labeled registry of **31 original source-owned capabilities**, and **eight job-specific routes**. It optionally reuses JAR;VIS/planZ public interest matching on a separate click. Every capability retains a link to the source owner, readiness and consent gate; draft experiments are not treated as deployed services. Copy or download Markdown or explicitly **non-executable JSON**. No participant matching, DNS change, project execution, volunteer outreach, grant submission, chat account, profile, model call or storage is implied. The first human Porch remains the simpler path. See [OPERATOR-ROUTES-008](docs/OPERATOR-ROUTES-008.md).
+
+The front-door GitHub workflow now runs all Porch and Work Desk unit tests. Review the exact hosted `/work/` route and mobile usability before release.
+
+### CROSS-ROOM-009 · one real source-native crossing contract (staging)
+
+The optional Work Desk ticket export follows **webZ's actual `abundent/public-crossing/v0` schema**, validated in CI against original webZ `readCrossing` / `makeCrossing` / `makeReturn` at pinned commit `963b047a414a5822a82681fd838dfdadeb5c8c41`. A visitor deliberately selects public-only topic/capacity, acknowledges limits, and downloads a local JSON file with all authority flags false. No user text, identity or receipt is included; no destination is contacted or enrolled. This is a real code-contract crossing, not live multi-user interoperability. See [technical gates](docs/OPERATOR-ROUTES-008.md#cross-room-009--proven-compatible-with-the-original-webz-receiver-staging).
