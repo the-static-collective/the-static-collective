@@ -27,3 +27,6 @@ jobs:
         run: node --test front-door/porch/engine.test.mjs
       - name: First-party browser scripts parse
         run: node --check front-door/porch/app.mjs && node --check front-door/porch/private-inbox.mjs && node --check front-door/feedback/widget.mjs && node --check front-door/try/demo.mjs
+
+      - name: Confirm public first-party pages resolve through actual DNS
+        run: node front-door/tests/live-http.mjs
