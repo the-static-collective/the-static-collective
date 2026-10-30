@@ -42,6 +42,18 @@
 <button type="button" id="save-markdown" class="work-secondary">Save .md</button>
 <button type="button" id="save-json" class="work-secondary">Save proposal .json</button></div>
 <p id="work-export-status" class="help-text" role="status" aria-live="polite">Exports are local; no source owner receives this card.</p>
+<details class="work-research" id="carry-details">
+<summary>Carry just a public topic into a separate room (optional)</summary>
+<p>The webZ Crossings experiment accepts a strict public-only JSON file. This copy carries <strong>no description, note, name, contact detail, private receipt, or identity</strong>. Nothing opens another room or sends a message automatically.</p>
+<div class="crossing-fields"><label for="cross-topic">Public topic
+<select id="cross-topic"><option value="">Choose a topic</option><option value="grocery">Groceries</option><option value="milk">Milk/food</option><option value="care">Care (private-case information must stay out)</option><option value="artists">Artists</option><option value="park">Parks</option><option value="church">Church</option></select></label>
+<label for="cross-capacity">Possible action
+<select id="cross-capacity"><option value="">Choose an action</option><option value="Listen">Listen</option><option value="Research">Research</option><option value="Make a card">Make a card</option><option value="Gather people">Gather people</option><option value="Build a prototype">Build a prototype</option><option value="Make something expressive">Make something expressive</option></select></label></div>
+<label class="cross-consent"><input type="checkbox" id="cross-ack"><span>I understand this makes a local, public-only proposal file. Nobody is contacted, assigned or approved.</span></label>
+<button type="button" class="work-secondary" id="save-crossing">Save public crossing ticket .json</button>
+<p id="cross-status" class="help-text" role="status" aria-live="polite">No crossing prepared. No data sent.</p>
+<p><a href="https://github.com/the-static-collective/webZ/pull/138" target="_blank" rel="noopener noreferrer">Review webZ's original Crossings source ↗</a> · Receiving site may be a separate unpublished preview. Importing is a later deliberate decision.</p>
+</details>
 <details class="work-research"><summary>Go deeper: find related public research (optional)</summary>
 <p>The public editorial sources from JAR;VIS and planZ are dated, not live matching. Opening this section alone does not send your text. The lookup runs locally when you click.</p>
 <button id="find-research" class="work-secondary" type="button">Look through existing public research →</button>
