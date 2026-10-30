@@ -1,0 +1,226 @@
+name: NATIVE-OUTPUT-010 CANNON eleven-source makers plus Free Graph
+on:
+  pull_request:
+    paths:
+      - 'front-door/native-output/**'
+      - '.github/workflows/abundent-native-output.yml'
+  push:
+    branches:
+      - feature/native-output-makers-010
+    paths:
+      - 'front-door/native-output/**'
+      - '.github/workflows/abundent-native-output.yml'
+  workflow_dispatch:
+    inputs:
+      preset:
+        description: 'Public synthetic illustration; never include private material'
+        required: true
+        type: choice
+        default: garden
+        options:
+          - garden
+          - application
+          - creative
+permissions:
+  contents: read
+concurrency:
+  group: native-output-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  actual-native-output:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: front
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: the-static-collective/CANNON
+          ref: 479458216ccc5546ad6947ec36ba282aadbefdac
+          path: cannon
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: the-static-collective/webZ
+          ref: 83b35070d8d56155156655279bfdcf50aa77794f
+          path: webz
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: the-static-collective/GrO
+          ref: 9e6361105aae335ccb0657092809eef43e7ab4da
+          path: gro
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: the-static-collective/lemonPRESS
+          ref: f091e73d2f64b2237ee828010ae244b39e4070b8
+          path: press
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: the-static-collective/full-measure-world-layer
+          ref: c9206d5055ad574a23acb2eceb5f8785a4ad64fe
+          path: full
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: the-static-collective/Jubilee-treasury
+          ref: a36777cb87bcfb6b7706b910ba18c4c4b24c73a3
+          path: penny
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: the-static-collective/GHoT
+          ref: e35dd470384d864b7b0b629a68dad570875a7df0
+          path: ghot
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: the-static-collective/reLATTE
+          ref: dcc8cdca84c440aa4294134f020fb7095bf87f24
+          path: relatte
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: the-static-collective/planZ
+          ref: ca050aeb94dfe73a719513cb5cb8dad58ab2783a
+          path: planz
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: the-static-collective/GRAFT
+          ref: 78976228eba243acb489c0aa9c501128904fbda6
+          path: graft
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: the-static-collective/JAR-VIS
+          ref: 98388d1bef8e876a5a72e7c20fe6d81d481caae2
+          path: jarvis
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: the-static-collective/free-graph
+          ref: ec0ad8743c5faac3f3675760bbafcbcb1df846c1
+          path: freegraph
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Resolve one public-only illustration preset; refuse freeform user narrative
+        shell: bash
+        env:
+          PRESET: ${{ inputs.preset || 'garden' }}
+        run: |
+          case "$PRESET" in
+            garden)
+              printf '%s\n' 'A garden table where neighbors share a safe useful food question' > topic.txt ;;
+            application)
+              printf '%s\n' 'A six-month community pilot with one honest independently reviewable first result' > topic.txt ;;
+            creative)
+              printf '%s\n' 'A voluntary community story and music table that respects author rights' > topic.txt ;;
+            *) echo 'Unknown public-only preset' >&2; exit 1 ;;
+          esac
+          printf '%s\n' "$PRESET" > scenario.txt
+      - name: Install dependencies needed by the exact original source runners
+        run: |
+          (cd full && npm ci --ignore-scripts --no-audit --no-fund)
+          (cd relatte && npm install --ignore-scripts --no-audit --no-fund)
+      - name: Original CANNON owner tests and original graph unit contract
+        run: |
+          (cd cannon && npm test)
+          (cd freegraph && python3 -m unittest discover -s tests -q)
+      - name: CANNON invokes actual original WebZ and GrO and creates printable zine
+        run: |
+          TOPIC="$(cat topic.txt)"
+          node cannon/scripts/culture-forge.mjs build --webz webz --gro gro --out culture-out --topic "$TOPIC"
+          node cannon/scripts/culture-forge.mjs verify --webz webz --gro gro --out culture-out
+          test -s culture-out/comic.html
+          test -s culture-out/field-card.md
+      - name: Independently governed original lemonPRESS receiver HOLD
+        run: |
+          node cannon/scripts/culture-delivery.mjs deliver --webz webz --gro gro --press press --forge culture-out --out press-held
+          node cannon/scripts/culture-delivery.mjs verify --webz webz --gro gro --press press --forge culture-out --out press-held
+      - name: Original Full Measure and PENNY synthetic review (zero real effects)
+        run: >-
+          node full/node_modules/tsx/dist/cli.mjs cannon/scripts/culture-use-003.mjs build
+          --webz webz --gro gro --press press --fm full --penny penny
+          --forge culture-out --held press-held --out use-confirmed --variant confirmed
+      - name: Original GHoT source work and signed reLATTE receiving HOLD
+        run: >-
+          node --experimental-strip-types full/node_modules/tsx/dist/cli.mjs
+          cannon/scripts/culture-sovereign-004.mjs run
+          --webz webz --gro gro --press press --fm full --penny penny --ghot ghot
+          --relatte relatte --forge culture-out --held press-held --use use-confirmed --out sovereign-hold
+      - name: Native planZ triage GRAFT candidate and JARVIS attention
+        run: >-
+          node --experimental-strip-types full/node_modules/tsx/dist/cli.mjs
+          cannon/scripts/culture-return-005.mjs run
+          --webz webz --gro gro --press press --fm full --penny penny --ghot ghot
+          --relatte relatte --planz planz --graft graft --jarvis jarvis
+          --forge culture-out --held press-held --use use-confirmed --sovereign sovereign-hold --out return-loop
+      - name: Independently cold verify all eleven original source owners and six held outputs
+        run: >-
+          node --experimental-strip-types full/node_modules/tsx/dist/cli.mjs
+          cannon/scripts/culture-return-005.mjs verify
+          --webz webz --gro gro --press press --fm full --penny penny --ghot ghot
+          --relatte relatte --planz planz --graft graft --jarvis jarvis
+          --forge culture-out --held press-held --use use-confirmed --sovereign sovereign-hold --out return-loop
+      - name: New Free Graph native projection of actually inspected CANNON output
+        run: |
+          python3 front/front-door/native-output/build_graph.py --base . --freegraph freegraph --out graph-out --scenario "$(cat scenario.txt)"
+          python3 freegraph/scripts/fg.py validate graph-out/free-graph.packet.json > graph-out/native-validation.json
+          python3 freegraph/scripts/fg.py digest graph-out/free-graph.packet.json > graph-out/native-packet-id.txt
+          test -s graph-out/source-graph.svg
+          python3 - <<'PY'
+          import json
+          x=json.load(open('graph-out/graph-receipt.json'))
+          p=json.load(open('graph-out/free-graph.packet.json'))
+          assert x['packetId']==p['packet_id']
+          assert x['humanOutcomeVerified'] is False
+          assert all(e['authority']=='none' for e in p['links'])
+          assert len(p['nodes'])==6 and len(p['links'])==5
+          PY
+      - name: Refuse forged authority and corrupted CANNON source outputs
+        run: |
+          cp return-loop/jarvis-attention.json return-loop/attention.save
+          printf 'forged' >> return-loop/jarvis-attention.json
+          if python3 front/front-door/native-output/build_graph.py --base . --freegraph freegraph --out rejected-graph --scenario garden; then
+            echo 'ERROR: Graph accepted modified native source'; exit 1
+          fi
+          mv return-loop/attention.save return-loop/jarvis-attention.json
+          if test -e rejected-graph; then echo 'ERROR: rejected path wrote output'; exit 1; fi
+      - name: Upload strictly selected public-safe outputs (never synthetic test signing keys)
+        uses: actions/upload-artifact@v4
+        with:
+          name: abundent-cannon-freegraph-original-native-output
+          path: |
+            culture-out/comic.html
+            culture-out/field-card.md
+            culture-out/request.json
+            culture-out/receipt.json
+            press-held/candidate.json
+            press-held/hold-receipt.json
+            use-confirmed/review.json
+            use-confirmed/variant.json
+            sovereign-hold/ghot-task.json
+            sovereign-hold/ghot-receipt.json
+            return-loop/culture-offer.json
+            return-loop/graft-nursery.json
+            return-loop/jarvis-attention.json
+            return-loop/planz-hold.json
+            return-loop/return-receipt.json
+            return-loop/selection.json
+            graph-out/free-graph.packet.json
+            graph-out/graph-receipt.json
+            graph-out/native-packet-id.txt
+            graph-out/native-validation.json
+            graph-out/source-graph.svg
+            scenario.txt
+          retention-days: 30
