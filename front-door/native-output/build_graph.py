@@ -7,7 +7,7 @@ from pathlib import Path
 
 FILES = (
     ("cannon", "culture-out/receipt.json", "CANNON source-verified cultural artifact", "artifact"),
-    ("press", "press-held/receipt.json", "lemonPRESS independent editorial HOLD", "receipt"),
+    ("press", "press-held/hold-receipt.json", "lemonPRESS independent editorial HOLD", "receipt"),
     ("relatte", "sovereign-hold/roundtrip.json", "GHoT and reLATTE signed receiver-local HOLD", "receipt"),
     ("planz", "return-loop/planz-hold.json", "planZ open planning gate", "receipt"),
     ("graft", "return-loop/graft-nursery.json", "GRAFT nursery candidate, no branch created", "receipt"),
