@@ -34,3 +34,9 @@ Keep the retro JAR;VIS visual character as an accent, and let real people's part
 ## NEXT-MOVE-003 · Immediate usefulness (staging)
 
 The human porch now gives a **local ten-minute next move**, separately from its unsent note. Transparent deterministic rules suggest one bounded action, one condition for useful progress, a consent/safety boundary, and an honest return status; a visitor can copy the plan without sending anything. This does not invoke live JAR;VIS models, search volunteers, assign tasks, or prove any field fulfillment. See [USEFUL-WORK-003](docs/USEFUL-WORK-003.md) for the gated path from one useful note to one confirmed human act. This follow-up is stacked on the unmerged front-door feature, not promoted to the apex.
+
+## ATTENTION-FLOW-004 · Proximity by interest, not identity (staging)
+
+The immediate next move now takes an optional, **momentary attention window**: half a minute, a few minutes (default), or a little more room. A need, offer, or question is a current direction of attention, never a permanent user classification. No countdown, points, account, persistent profile, API call, ranking of people, automatic contact, or new backend. The selector is **not included in exported or privately submitted notes**. The front-door headline speaks to whatever the visitor is carrying, rather than assuming everyone arrives asking for help.
+
+[ATTENTION-FLOW-004](docs/ATTENTION-FLOW-004.md) records the longer boundary: useful local artifact first, optional consented interest-proximity afterward, verified human action only when it actually happens. No flow-matching network has been deployed.
