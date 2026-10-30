@@ -1,0 +1,45 @@
+{
+  "version": "front-door-002",
+  "status": "PUBLIC_STAGING_CANDIDATE",
+  "humanEntry": "/",
+  "machineIndex": "/for-computers/",
+  "machineText": "/llms.txt",
+  "owner": "Abundent / Static Collective",
+  "assertions": [
+    "This candidate is not the current apex.",
+    "Outbound project links are discovery only.",
+    "No permission, execution, delivery, submission or verified identity is conveyed."
+  ],
+  "entries": [
+    {
+      "label": "Public doors",
+      "url": "https://doors.abundent.org/",
+      "status": "experimental link"
+    },
+    {
+      "label": "Garden",
+      "url": "https://garden.abundent.org/",
+      "status": "independent prototype"
+    },
+    {
+      "label": "Reality 2.0",
+      "url": "https://reality.abundent.org/",
+      "status": "experimental link"
+    },
+    {
+      "label": "Becoming",
+      "url": "https://becoming.abundent.org/",
+      "status": "experimental link"
+    },
+    {
+      "label": "webZ",
+      "url": "https://webz.abundent.org/",
+      "status": "source-owned experiment"
+    },
+    {
+      "label": "Books for computers",
+      "url": "https://books.abundent.org/",
+      "status": "separately deployed experiment"
+    }
+  ]
+}
