@@ -1,5 +1,5 @@
 {
-  "version": "front-door-002",
+  "version": "front-door-002-porch-002",
   "status": "PUBLIC_STAGING_CANDIDATE",
   "humanEntry": "/",
   "machineIndex": "/for-computers/",
@@ -11,6 +11,11 @@
     "No permission, execution, delivery, submission or verified identity is conveyed."
   ],
   "entries": [
+    {
+      "label": "Human Porch",
+      "url": "/porch/",
+      "status": "portable private-draft composer; no automated delivery"
+    },
     {
       "label": "Public doors",
       "url": "https://doors.abundent.org/",
