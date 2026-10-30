@@ -1,0 +1,17 @@
+/* Low-key, keyboard-accessible first-party bug/idea bubble. */
+.ab-feedback-button{position:fixed;right:14px;bottom:14px;z-index:1000;background:#f0d99d;color:#213729;border:2px solid #213729;box-shadow:4px 4px 0 #768b76;border-radius:10px;padding:12px 15px;font:750 14px/1.15 system-ui,sans-serif;cursor:pointer;max-width:calc(100vw - 28px)}
+.ab-feedback-button:hover{background:#ffeab3}.ab-feedback-button:focus-visible{outline:3px solid #aa5925;outline-offset:3px}
+.ab-feedback-dialog{color:#243b2b;border:2px solid #253f2e;border-radius:10px;box-shadow:7px 7px 0 #a3b3a0;background:#fffdf5;padding:0;max-width:min(550px,calc(100vw - 24px));max-height:calc(100dvh - 36px);overflow:auto}
+.ab-feedback-dialog::backdrop{background:rgba(19,39,26,.65)}
+.ab-feedback-frame{padding:24px}.ab-feedback-dialog h2{font-size:clamp(23px,4vw,31px);margin:0 0 9px}.ab-feedback-dialog p{font:15px/1.5 system-ui,sans-serif;margin:0 0 15px}
+.ab-feedback-warning{background:#eaf0df;border-left:4px solid #78917d;padding:11px}
+.ab-feedback-dialog label{display:block;font:700 14px system-ui;margin:12px 0 5px}
+.ab-feedback-dialog select,.ab-feedback-dialog textarea{display:block;width:100%;background:white;border:2px solid #718873;border-radius:5px;color:#243b2b;padding:10px;font:15px/1.4 system-ui}
+.ab-feedback-dialog textarea{resize:vertical}.ab-feedback-dialog .ab-feedback-consent{display:flex;align-items:start;gap:10px;font-weight:500;line-height:1.4}.ab-feedback-consent input{flex:0 0 19px;height:19px;margin:2px 0 0}
+.ab-feedback-counter{display:block;text-align:right}.ab-feedback-actions{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:20px 0 12px}
+.ab-feedback-send,.ab-feedback-close{padding:10px 14px;border:2px solid #284b36;background:#284b36;color:white;border-radius:5px;cursor:pointer;font:700 14px system-ui}
+.ab-feedback-close{background:#fffefa;color:#284b36}.ab-feedback-email{font:600 13px system-ui}
+.ab-feedback-send:disabled{opacity:.5;cursor:not-allowed}
+.ab-feedback-receipt{border:2px solid #64856f;background:#eaf2e5;padding:12px;margin:13px 0 0}.ab-feedback-receipt textarea{font:12px/1.4 ui-monospace,monospace}
+@media(max-width:480px){.ab-feedback-button{right:10px;bottom:10px;padding:11px}.ab-feedback-frame{padding:16px}}
+@media print{.ab-feedback-button,.ab-feedback-dialog{display:none!important}}
