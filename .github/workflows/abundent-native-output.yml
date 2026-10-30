@@ -196,16 +196,31 @@ jobs:
           fi
           mv return-loop/attention.save return-loop/jarvis-attention.json
           if test -e rejected-graph; then echo 'ERROR: rejected path wrote output'; exit 1; fi
-      - name: Upload real printable comic, source-owned returns, Free Graph JSON and SVG
+      - name: Upload strictly selected public-safe outputs (never synthetic test signing keys)
         uses: actions/upload-artifact@v4
         with:
           name: abundent-cannon-freegraph-original-native-output
           path: |
-            culture-out/
-            press-held/
-            use-confirmed/
-            sovereign-hold/
-            return-loop/
-            graph-out/
+            culture-out/comic.html
+            culture-out/field-card.md
+            culture-out/request.json
+            culture-out/receipt.json
+            press-held/candidate.json
+            press-held/hold-receipt.json
+            use-confirmed/review.json
+            use-confirmed/variant.json
+            sovereign-hold/ghot-task.json
+            sovereign-hold/ghot-receipt.json
+            return-loop/culture-offer.json
+            return-loop/graft-nursery.json
+            return-loop/jarvis-attention.json
+            return-loop/planz-hold.json
+            return-loop/return-receipt.json
+            return-loop/selection.json
+            graph-out/free-graph.packet.json
+            graph-out/graph-receipt.json
+            graph-out/native-packet-id.txt
+            graph-out/native-validation.json
+            graph-out/source-graph.svg
             scenario.txt
           retention-days: 30
