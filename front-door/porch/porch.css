@@ -7,3 +7,16 @@
 .next-move p{font-size:15px;line-height:1.5}
 .next-move .note-preview{max-height:600px;background:#fffefa}
 @media print{.next-move button,.next-move #next-move-status{display:none!important}}
+
+/* ATTENTION-FLOW-004: a transient, voluntary attention window; no scores or profile. */
+.attention-window{margin-top:24px!important;padding:17px!important;border:1px solid #aebdad!important;background:#f4f6ee}
+.attention-window legend{font-size:17px!important;letter-spacing:normal!important;margin-bottom:10px!important;padding:0 4px!important}
+.attention-window legend small{font-weight:400;font-size:13px}
+.attention-grid{display:flex;gap:9px;flex-wrap:wrap}
+.attention-grid label{display:inline-flex;cursor:pointer;align-items:center;gap:7px;padding:9px 13px;background:#fffdfa;border:2px solid #9dae98;font-size:14px;line-height:1.3}
+.attention-grid label:has(input:checked){background:#dceacb;border-color:#284b36}
+.attention-grid label:focus-within{outline:3px solid #a65f2f;outline-offset:2px}
+.attention-grid input{accent-color:#284b36;min-height:17px;min-width:17px}
+.attention-window .help-text{margin-bottom:0}
+@media(max-width:590px){.attention-grid{display:grid;grid-template-columns:1fr}.attention-grid label{width:100%}}
+@media print{.attention-window{display:none!important}}
