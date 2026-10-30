@@ -25,3 +25,5 @@ jobs:
         run: cd front-door && python -m unittest discover -s tests -v
       - name: Porch note engine unit tests
         run: node --test front-door/porch/engine.test.mjs
+      - name: First-party browser scripts parse
+        run: node --check front-door/porch/app.mjs && node --check front-door/porch/private-inbox.mjs
