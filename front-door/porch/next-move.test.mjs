@@ -60,3 +60,12 @@ test("attention is temporary and does not alter the visitor's original note",()=
 test("unrecognized attention values are refused, not silently converted",()=>{
  assert.throws(()=>makeNextMove(base,{attention:"all-day"}),/attention window/);
 });
+
+test("visitor-chosen action remains primary at every attention window",()=>{
+ const x={kind:"need",particular:"I need help with a community garden.",next:"Talk about watering the tomatoes."};
+ for(const attention of ["glance","few","longer"]){
+  const plan=makeNextMove(x,{attention});
+  assert.match(plan.first,/watering the tomatoes/);
+ }
+ assert.match(makeNextMove(x,{attention:"glance"}).first,/No action or contact is required now/);
+});
