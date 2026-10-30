@@ -46,6 +46,9 @@ class TestSite(unittest.TestCase):
     self.assertIn('id="private-consent"',s)
     self.assertIn('id="check-receipt"',s)
     self.assertIn('id="withdraw-receipt"',s)
+    policy=json.loads((root/'vercel.json').read_text())
+    csp=next(h['value'] for group in policy['headers'] for h in group['headers'] if h['key']=='Content-Security-Policy')
+    self.assertIn("connect-src 'self' https://kbhqacsdvjsstzyplqij.supabase.co",csp)
     self.assertNotIn('localStorage',script)
 
 if __name__=='__main__': unittest.main()
