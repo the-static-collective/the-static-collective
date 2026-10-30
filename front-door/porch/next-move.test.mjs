@@ -30,3 +30,33 @@ test("invalid input cannot be presented as a plan",()=>{
  assert.throws(()=>makeNextMove({kind:"fake",particular:"A real request."}),/valid porch note/);
  assert.throws(()=>makeNextMove({kind:"need",particular:" "}),/valid porch note/);
 });
+
+test("a glance is helpful without pulling visitors into a larger task",()=>{
+ const p=makeNextMove(base,{attention:"glance"});
+ assert.equal(p.attentionSeconds,30);
+ assert.equal(p.flow,"need");
+ assert.match(p.first,/one sentence/);
+ assert.doesNotMatch(p.first,/Ask an established local food contact/);
+ assert.match(p.text,/Half a minute/);
+ assert.match(p.text,/not sent · not a match/);
+});
+test("longer attention never implies automatic outreach",()=>{
+ const p=makeNextMove({kind:"offer",particular:"I can share garden tools."},{attention:"longer"});
+ assert.equal(p.attentionSeconds,1200);
+ assert.equal(p.flow,"offer");
+ assert.match(p.text,/Ask what would actually be useful/);
+ assert.match(p.text,/not a commitment/);
+});
+test("attention is temporary and does not alter the visitor's original note",()=>{
+ const original={kind:"question",particular:"Could we learn why tools sit unused?",next:"Ask one curious neighbor."};
+ const copy=JSON.stringify(original);
+ const quick=makeNextMove(original,{attention:"glance"});
+ const longer=makeNextMove(original,{attention:"longer"});
+ assert.notEqual(quick.first,longer.first);
+ assert.equal(JSON.stringify(original),copy);
+ assert.equal(quick.flow,longer.flow);
+ assert.equal(quick.topic,longer.topic);
+});
+test("unrecognized attention values are refused, not silently converted",()=>{
+ assert.throws(()=>makeNextMove(base,{attention:"all-day"}),/attention window/);
+});
