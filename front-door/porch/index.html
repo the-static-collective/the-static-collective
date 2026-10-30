@@ -83,6 +83,27 @@
      <button id="copy-next-move" class="porch-secondary" type="button">Copy my next move</button>
      <p id="next-move-status" class="help-text" role="status" aria-live="polite">This plan hasn't gone anywhere.</p>
    </section>
+   <section class="personal-return" id="personal-return" aria-labelledby="personal-return-heading">
+     <h3 id="personal-return-heading">How did that go? (optional)</h3>
+     <p>You can make a small, private record for yourself—even if you did nothing, changed your mind, or still don't know. It is not a verified work receipt, and nothing is sent.</p>
+     <fieldset>
+       <legend>What can you personally say?</legend>
+       <div class="return-choices">
+         <label><input type="radio" name="return-status" value="DONE_REPORTED"><span>I tried it and made progress</span></label>
+         <label><input type="radio" name="return-status" value="NOT_YET"><span>Not yet</span></label>
+         <label><input type="radio" name="return-status" value="DECLINED"><span>I chose not to</span></label>
+         <label><input type="radio" name="return-status" value="UNKNOWN" checked><span>Not sure</span></label>
+       </div>
+     </fieldset>
+     <label for="return-what-changed">A few words about what changed (optional)</label>
+     <textarea id="return-what-changed" maxlength="220" rows="2" placeholder="No names, addresses or private stories."></textarea>
+     <div class="porch-actions"><button type="button" class="porch-secondary" id="make-return-card">Make my own return note</button></div>
+     <p id="return-status-message" class="help-text" role="status" aria-live="polite">Not prepared. No note has been sent.</p>
+     <div id="return-result" hidden>
+       <pre id="return-preview" class="note-preview"></pre>
+       <div class="porch-actions"><button id="copy-return" type="button" class="porch-secondary">Copy my return</button><button id="save-return" type="button" class="porch-secondary">Save a text file</button></div>
+     </div>
+   </section>
    <section class="interest-roads">
      <details id="interest-roads-details">
        <summary id="interest-roads-heading">Curious where else this could lead? (optional)</summary>

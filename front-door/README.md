@@ -46,3 +46,7 @@ The immediate next move now takes an optional, **momentary attention window**: h
 The Porch now has a **collapsed optional research drawer**. Only when the visitor opens it, a fixed same-origin JSON snapshot of JAR;VIS's reviewed public-work index and planZ's separately reviewed public plan index is read and matched locally against the current note. It shows up to 3 documented projects and 1 open question, with original source links, review date and frank status. It neither sends visitor text nor creates a match, task, contact, or service request. Empty/invalid/unavailable sources fail visibly to no recommendation, without affecting the human's own note, next action, or opt-in private submission. [Read the provenance and gates](docs/INTEREST-ROADS-005.md).
 
 The snapshot is a **deliberate dated copy**, not an auto-refreshing database. Refresh only after inspecting the two source owners' current public indexes and independent project links. No new remote model, key, account, analytics, storage or backend.
+
+## RETURN-CARD-006 · Personal return, not verified fulfillment (staging)
+
+After preparing one small move, a visitor can optionally record **I tried / Not yet / I chose not to / Not sure**, plus 220 characters of their own observation, then deliberately copy or save a plain text file. The return is **self-attested, local, unsigned, and unsent**. It does not enter the private review queue, create a confirmed receipt, claim another person's participation, or publish anything. See [the limits and future independent-review gate](docs/RETURN-CARD-006.md).

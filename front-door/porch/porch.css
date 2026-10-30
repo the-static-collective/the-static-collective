@@ -38,3 +38,20 @@
 .interest-roads summary{cursor:pointer;font-weight:800;font-size:19px;line-height:1.35;outline-offset:4px}
 .interest-roads summary:focus-visible{outline:3px solid #a65f2f}
 .interest-roads details[open] summary{margin-bottom:13px}
+
+/* RETURN-006: a visitor-owned reflection, not a signed or confirmed field receipt. */
+.personal-return{margin:24px 0;padding:20px;background:#fff8e8;border:2px solid #b8a47c}
+.personal-return h3{font-size:23px;letter-spacing:-.025em;margin:0 0 8px}
+.personal-return p{font-size:14px;line-height:1.55}
+.personal-return fieldset{border:0;padding:0;margin-top:16px}
+.personal-return legend{font-weight:800;margin-bottom:10px}
+.return-choices{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.return-choices label{display:flex;gap:9px;cursor:pointer;align-items:center;background:#fffdfa;border:2px solid #c3b9a4;padding:10px;font-size:14px}
+.return-choices label:has(input:checked){border-color:#385942;background:#e4eddd}
+.return-choices label:focus-within{outline:3px solid #a65f2f;outline-offset:2px}
+.personal-return input[type=radio]{min-width:17px;min-height:17px;accent-color:#284b36}
+.personal-return label[for="return-what-changed"]{font-size:14px;display:block;font-weight:750;margin-top:17px}
+#return-what-changed{width:100%;padding:11px;border:2px solid #a5a28f;background:#fffefa;font:inherit;resize:vertical}
+.personal-return .note-preview{max-height:360px}
+@media(max-width:650px){.return-choices{grid-template-columns:1fr}}
+@media print{.personal-return{display:none!important}}
