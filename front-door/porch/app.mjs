@@ -1,6 +1,10 @@
 import {prepare,mailto} from "./engine.mjs";
 const $=id=>document.getElementById(id);
 const form=$("porch-form");let current=null,objectUrl=null;
+const entryKind=new URL(location.href).searchParams.get("kind");
+if(Object.prototype.hasOwnProperty.call({need:1,offer:1,question:1},entryKind)){
+ const selected=[...form.querySelectorAll('input[name="kind"]')].find(el=>el.value===entryKind);if(selected)selected.checked=true;
+}
 const text={need:["What would help?","A simple sentence is enough. For example: “I'd like someone to help me figure out where to start.”"],offer:["What could you share?","A skill, a spare thing, a little time, or something you've learned."],question:["What did you notice?","A question, an overlooked problem, or an idea worth asking somebody about."]};
 function resetOutput(){current=null;$("result").hidden=true;$("note-preview").textContent="";$("email-note").href="mailto:us@abundent.org?subject=Hello%20from%20the%20porch";}
 function updateIntent(){const kind=form.elements.kind.value;$("what-label").textContent=text[kind][0];$("what-help").textContent=text[kind][1]}
@@ -27,3 +31,5 @@ $("save-note").addEventListener("click",()=>{
  catch{$("result-status").textContent="Download unavailable. Copy the note above instead.";}
 });
 $("email-note").addEventListener("click",()=>{$("result-status").textContent="Your email app may open a draft. Nothing is sent until you press Send there.";});
+
+updateIntent();
