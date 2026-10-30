@@ -23,10 +23,10 @@ jobs:
           node-version: '22'
       - name: Human / machine split and staging gates
         run: cd front-door && python -m unittest discover -s tests -v
-      - name: Porch note engine unit tests
-        run: node --test front-door/porch/engine.test.mjs
+      - name: Porch and cross-repository operator route unit tests
+        run: node --test front-door/porch/*.test.mjs front-door/work/*.test.mjs
       - name: First-party browser scripts parse
-        run: node --check front-door/porch/app.mjs && node --check front-door/porch/private-inbox.mjs && node --check front-door/feedback/widget.mjs && node --check front-door/try/demo.mjs
+        run: node --check front-door/porch/app.mjs && node --check front-door/porch/private-inbox.mjs && node --check front-door/feedback/widget.mjs && node --check front-door/try/demo.mjs && node --check front-door/work/app.mjs && node --check front-door/work/router.mjs
 
       - name: Confirm public first-party pages resolve through actual DNS
         run: node front-door/tests/live-http.mjs
