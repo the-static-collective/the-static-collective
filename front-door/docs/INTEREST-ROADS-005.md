@@ -32,7 +32,7 @@ up to 1 open planZ research question
 visitor may inspect a source or ignore them all
 ```
 
-This adds a source-backed **context lane**, not human matching. The visitor's original note, approximate area, selected attention window, and any private receipt key do not become query parameters, recommendation logs, an external request, or a persistent profile. The only new fetch is the literal constant path `/porch/interest-roads-v1.json`; no visitor text crosses that request.
+This adds a source-backed **context lane**, not human matching. The visitor's original note, approximate area, selected attention window, and any private receipt key do not become query parameters, recommendation logs, an external request, or a persistent profile. The visitor must **open an optional, normally collapsed research drawer** before any catalog fetch. The only new fetch is the literal constant path `/porch/interest-roads-v1.json`; no visitor text crosses that request.
 
 Interest matching uses explicit source `tags` (with a few transparent common-word aliases). A handful of technical atlas/index entries require relevant technical intent so that someone who mentions bread sees the Garden rather than an unrelated repository map. The owner source's editorial order breaks ties. This ranking makes **no** claim about people, available volunteers, suitability for safety-critical help, geographic proximity, or service quality. The browser renders source-controlled text as `textContent`, never injected HTML.
 
