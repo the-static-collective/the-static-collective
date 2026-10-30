@@ -83,13 +83,15 @@
      <button id="copy-next-move" class="porch-secondary" type="button">Copy my next move</button>
      <p id="next-move-status" class="help-text" role="status" aria-live="polite">This plan hasn't gone anywhere.</p>
    </section>
-   <section class="interest-roads" aria-labelledby="interest-roads-heading">
-     <h3 id="interest-roads-heading">A few doors near your idea.</h3>
-     <p>Some existing experiments and open questions may touch the same interest. This is a dated, public research index—not a directory of people, available help, or approved community partners. Your words are compared <strong>only in this browser</strong>; no search terms are sent.</p>
-     <p id="interest-road-status" class="help-text" role="status" aria-live="polite">No lookups performed.</p>
-     <div id="interest-road-experiments" class="road-results"></div>
-     <div id="interest-road-questions" class="road-results"></div>
-     <p class="help-text"><a href="/doors/">Browse all public doors instead →</a> No match is required to keep your note or make your next move.</p>
+   <section class="interest-roads">
+     <details id="interest-roads-details">
+       <summary id="interest-roads-heading">Curious where else this could lead? (optional)</summary>
+       <p>Some experiments and open questions may touch the same interest. This is a dated, public research index—not a directory of people, available help, or approved community partners. Your words are compared <strong>only in this browser</strong>; no search terms are sent.</p>
+       <p id="interest-road-status" class="help-text" role="status" aria-live="polite">Open this section to explore related public research.</p>
+       <div id="interest-road-experiments" class="road-results"></div>
+       <div id="interest-road-questions" class="road-results"></div>
+       <p class="help-text"><a href="/doors/">Browse all public doors instead →</a> No match is required to keep your note or make your next move.</p>
+     </details>
    </section>
    <div class="porch-actions">
      <button id="copy-note" type="button" class="porch-button">Copy note</button>
