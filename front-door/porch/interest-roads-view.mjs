@@ -3,12 +3,12 @@ import {checkCatalog,selectInterestRoads} from "./interest-roads.mjs";
 // The only fetch is a fixed, same-origin, publicly reviewed document.
 export function installInterestRoads(){
  const $=id=>document.getElementById(id);
- const status=$("interest-road-status"),experiments=$("interest-road-experiments"),questions=$("interest-road-questions");
- let sequence=0,catalogPromise=null;
+ const status=$("interest-road-status"),experiments=$("interest-road-experiments"),questions=$("interest-road-questions"),details=$("interest-roads-details");
+ let sequence=0,catalogPromise=null,currentPrepared=null;
  function clear(){
-   sequence++;
+   sequence++;currentPrepared=null;details.open=false;
    experiments.replaceChildren();questions.replaceChildren();
-   status.textContent="No lookups performed. Related research is optional.";
+   status.textContent="Open this section to explore related public research.";
  }
  function link(label,url){
    const a=document.createElement("a");a.textContent=label;a.href=url;a.target="_blank";a.rel="noopener noreferrer";return a;
@@ -39,13 +39,15 @@ export function installInterestRoads(){
    })().catch(e=>{catalogPromise=null;throw e});
    return catalogPromise;
  }
- async function show(prepared){
+ async function load(){
+   if(!details.open||!currentPrepared)return;
+   const prepared=currentPrepared;
    const request=++sequence;
    experiments.replaceChildren();questions.replaceChildren();
-   status.textContent="Looking only at a public, dated catalog on this site. Your note is not sent for this lookup.";
+   status.textContent="Reading one fixed, dated public catalog on this site. Your note is not sent for this lookup.";
    try{
      const catalog=await readCatalog();
-     if(request!==sequence)return;
+     if(request!==sequence||!details.open)return;
      const selected=selectInterestRoads(prepared,catalog);
      selected.experiments.forEach(e=>draw(e,experiments));
      selected.questions.forEach(e=>draw(e,questions));
@@ -54,11 +56,21 @@ export function installInterestRoads(){
        ? "Related public research from JAR;VIS + planZ (last reviewed "+selected.reviewedOn+"). "+count+" reference"+(count===1?"":"s")+" found. None is a live match or an offer of help."
        : "No strong public research connection found. Your next-move card still works by itself. Nothing was matched or submitted.";
    }catch{
-     if(request!==sequence)return;
+     if(request!==sequence||!details.open)return;
      experiments.replaceChildren();questions.replaceChildren();
      status.textContent="Related public sources are unavailable or invalid, so no links were suggested. Your local next-move card still works.";
    }
  }
+ function show(prepared){
+   currentPrepared=prepared;
+   sequence++;experiments.replaceChildren();questions.replaceChildren();
+   status.textContent="Open this section to explore related public research.";
+   if(details.open)load();
+ }
+ details.addEventListener("toggle",()=>{
+   if(details.open){if(currentPrepared)load();}
+   else{sequence++;experiments.replaceChildren();questions.replaceChildren();}
+ });
  clear();
  return {show,clear};
 }
