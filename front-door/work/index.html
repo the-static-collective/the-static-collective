@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#284b36">
+<meta name="description" content="A source-linked desk for getting one practical task moving with existing Abundent tools.">
+<title>Work Desk — Abundent</title>
+<link rel="stylesheet" href="/style.css"><link rel="stylesheet" href="/work/work.css">
+<link rel="stylesheet" href="/feedback/widget.css">
+<script type="module" src="/feedback/widget.mjs"></script>
+<script type="module" src="/work/app.mjs"></script>
+</head><body><a class="skip" href="#main">Skip to the work desk</a>
+<div class="container"><header class="top"><a class="brand" href="/">abundent<span>.</span></a>
+<nav aria-label="Main menu"><a href="/">Start</a><a href="/porch/">The Porch</a><a href="/doors/">All the doors</a></nav></header>
+<main id="main">
+<section class="window"><div class="bar"><span class="lights" aria-hidden="true"><i></i><i></i><i></i></span><span>ABUNDENT / WORK_DESK.EXE</span><span class="live">operator tools · staging</span></div>
+<div class="hero"><p class="kicker">Use the machines. Keep the decisions.</p><h1>What are you trying to get done?</h1>
+<p class="lead">Pick one job. We'll point to the existing pieces that can help—and tell you what's still experimental.</p>
+<p class="sub">This doesn't run other projects, send applications, publish, invite people, or repair DNS. It builds a small, copyable work brief with source-owned doors. Nothing you type is sent to a server.</p></div>
+<form id="work-form" class="work-form" novalidate>
+<fieldset><legend><span class="step">01</span> Pick the kind of work</legend><div id="job-choices" class="work-choices" aria-label="Kinds of work"></div></fieldset>
+<div class="work-field"><label for="particular"><span class="step">02</span> <strong>What's the particular thing?</strong></label>
+<p class="help-text" id="particular-help">One real, non-sensitive sentence. No names, credentials, email addresses or private case details.</p>
+<textarea id="particular" rows="3" minlength="8" maxlength="420" required aria-describedby="particular-help" placeholder="The one thing I want to accomplish…"></textarea></div>
+<fieldset><legend><span class="step">03</span> How much room do you have now?</legend>
+<div class="work-time">
+<label><input name="attention" type="radio" value="glance"> Half a minute</label>
+<label><input name="attention" type="radio" value="few" checked> A few minutes</label>
+<label><input name="attention" type="radio" value="longer"> A little more room</label>
+</div></fieldset>
+<p class="work-boundary">Your work card is local-only, self-directed, and unverified. A draft branch or a passing code test does not mean someone is available or an action was executed.</p>
+<div class="work-actions"><button id="make-work" class="work-primary" type="submit">Find my shortest useful route →</button><button id="clear-work" class="work-secondary" type="reset">Clear</button></div>
+<p id="work-status" class="help-text" role="status" aria-live="polite">Loading source-owned routes. Nothing is sent.</p>
+</form>
+<section id="work-output" class="work-output" hidden tabindex="-1" aria-labelledby="work-output-title">
+<p class="kicker">Work card ready · not sent · not executed</p><h2 id="work-output-title">One job, the right machines.</h2>
+<p id="work-first" class="work-first"></p>
+<p id="work-gate" class="work-gate"></p>
+<h3>Existing tools worth opening</h3>
+<div id="work-owners" class="work-owners"></div>
+<div class="work-actions"><button type="button" id="copy-work" class="work-primary">Copy work brief</button>
+<button type="button" id="save-markdown" class="work-secondary">Save .md</button>
+<button type="button" id="save-json" class="work-secondary">Save proposal .json</button></div>
+<p id="work-export-status" class="help-text" role="status" aria-live="polite">Exports are local; no source owner receives this card.</p>
+<details class="work-research"><summary>Go deeper: find related public research (optional)</summary>
+<p>The public editorial sources from JAR;VIS and planZ are dated, not live matching. Opening this section alone does not send your text. The lookup runs locally when you click.</p>
+<button id="find-research" class="work-secondary" type="button">Look through existing public research →</button>
+<p id="work-research-status" class="help-text" role="status" aria-live="polite">Research not requested.</p>
+<div id="work-research-results" class="work-owners"></div>
+</details>
+</section>
+</section>
+<section class="work-foot"><h2>Not sure which door?</h2><p>The <a href="/porch/">Porch</a> is simpler: arrive with a need, offer or question and leave with one move. This desk is for somebody who wants to assemble several existing tools around a specific project.</p><p>Sources belong to their original repositories. There's no secret global operator. The receiver gets to say no.</p></section>
+</main><footer><span>Make something useful. Return the rest of the person's time.</span><span><span class="badge">WORK-ROUTES-008 · STAGING</span> · <a href="/for-computers/">For computers</a></span></footer>
+</div></body></html>
