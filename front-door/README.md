@@ -40,3 +40,9 @@ The human porch now gives a **local ten-minute next move**, separately from its 
 The immediate next move now takes an optional, **momentary attention window**: half a minute, a few minutes (default), or a little more room. A need, offer, or question is a current direction of attention, never a permanent user classification. No countdown, points, account, persistent profile, API call, ranking of people, automatic contact, or new backend. The selector is **not included in exported or privately submitted notes**. The front-door headline speaks to whatever the visitor is carrying, rather than assuming everyone arrives asking for help.
 
 [ATTENTION-FLOW-004](docs/ATTENTION-FLOW-004.md) records the longer boundary: useful local artifact first, optional consented interest-proximity afterward, verified human action only when it actually happens. No flow-matching network has been deployed.
+
+## INTEREST-ROADS-005 · Public source proximity without user profiling (staging)
+
+The Porch now has a **collapsed optional research drawer**. Only when the visitor opens it, a fixed same-origin JSON snapshot of JAR;VIS's reviewed public-work index and planZ's separately reviewed public plan index is read and matched locally against the current note. It shows up to 3 documented projects and 1 open question, with original source links, review date and frank status. It neither sends visitor text nor creates a match, task, contact, or service request. Empty/invalid/unavailable sources fail visibly to no recommendation, without affecting the human's own note, next action, or opt-in private submission. [Read the provenance and gates](docs/INTEREST-ROADS-005.md).
+
+The snapshot is a **deliberate dated copy**, not an auto-refreshing database. Refresh only after inspecting the two source owners' current public indexes and independent project links. No new remote model, key, account, analytics, storage or backend.
