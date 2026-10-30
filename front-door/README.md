@@ -50,3 +50,9 @@ The snapshot is a **deliberate dated copy**, not an auto-refreshing database. Re
 ## RETURN-CARD-006 · Personal return, not verified fulfillment (staging)
 
 After preparing one small move, a visitor can optionally record **I tried / Not yet / I chose not to / Not sure**, plus 220 characters of their own observation, then deliberately copy or save a plain text file. The return is **self-attested, local, unsigned, and unsent**. It does not enter the private review queue, create a confirmed receipt, claim another person's participation, or publish anything. See [the limits and future independent-review gate](docs/RETURN-CARD-006.md).
+
+## WEBSITE-CONVERGENCE-007 · Reconciling the already-built front doors (draft)
+
+[Read the evidence-based operator inventory](docs/WEBSITE-CONVERGENCE-007.md). A source audit of the last two weeks found overlapping webZ FIRST-INCH, FIELD-RETURN, THREE BELLS, USE-FIRST, CROSSINGS, Living Inbox, Workboard, Garden, and creative production functionality; these must be compared and composed before making yet another competing front door. Existing open PRs are not production releases.
+
+**One small staged routing repair:** the `/doors/` Switchboard card now clearly calls out a confirmed `apps.abundent.org` DNS/hosting mismatch and offers its separately Vercel-verified `abundent-switchboard.vercel.app` project hostname as an untested alternate. No DNS, project alias, backend or mail configuration was changed; actual unauthenticated HTTP behavior still needs manual checking.

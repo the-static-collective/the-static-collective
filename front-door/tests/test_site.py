@@ -85,6 +85,17 @@ class TestSite(unittest.TestCase):
     csp=next(h['value'] for group in policy['headers'] for h in group['headers'] if h['key']=='Content-Security-Policy')
     self.assertIn("connect-src 'self' https://kbhqacsdvjsstzyplqij.supabase.co",csp)
     self.assertNotIn('localStorage',script)
+  def test_switchboard_domain_conflict_has_transparent_fallback(self):
+    doors=(root/'doors/index.html').read_text()
+    self.assertIn('href="https://abundent-switchboard.vercel.app/"',doors)
+    self.assertIn('apps.abundent.org needs repair',doors)
+    self.assertIn('not an independently HTTP-tested guarantee',doors)
+    self.assertNotIn('href="https://apps.abundent.org/"',doors)
+    census=(root/'docs/WEBSITE-CONVERGENCE-007.md').read_text()
+    self.assertIn('FIRST-INCH-001/002/003',census)
+    self.assertIn('misconfigured',census)
+    self.assertIn('Open PRs are not merged architecture',census)
+
   def test_feedback_and_demo_doors(self):
     for p in ['index.html','explore/index.html','porch/index.html','for-computers/index.html','feedback/index.html','try/index.html','doors/index.html']:
       s=(root/p).read_text()
