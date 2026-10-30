@@ -45,6 +45,7 @@ export function installFeedback(){
  const open=()=>{if(typeof dialog.showModal==="function")dialog.showModal();else{dialog.setAttribute("open","");dialog.setAttribute("aria-modal","true")}field.focus()};
  const dismiss=()=>{if(typeof dialog.close==="function")dialog.close();else dialog.removeAttribute("open");button.focus()};
  button.addEventListener("click",open);close.addEventListener("click",dismiss);
+ if(location.pathname==='/feedback/'||location.pathname==='/feedback/index.html')queueMicrotask(open);
  dialog.addEventListener("click",e=>{if(e.target===dialog)dismiss()});
  let busy=false;
  form.addEventListener("submit",async e=>{
