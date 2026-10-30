@@ -45,3 +45,11 @@
 .work-foot p{max-width:75ch;line-height:1.65}
 @media(max-width:720px){.work-choices,.work-owners{grid-template-columns:1fr}.work-form{padding:17px}.work-output{padding:21px 16px}.work-time{display:grid;grid-template-columns:1fr}.work-time label{width:100%}}
 @media print{.work-form,.work-foot,.work-actions,.work-research{display:none!important}.work-output{border:0}}
+
+.crossing-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:16px 0}
+.crossing-fields label{font-weight:750;font-size:13px;display:block}
+.crossing-fields select{width:100%;font:inherit;min-height:45px;margin-top:7px;padding:8px;border:2px solid #9dad99;background:white;color:#244132}
+.cross-consent{display:flex;gap:10px;align-items:flex-start;font-size:13px;line-height:1.5;margin:15px 0}
+.cross-consent input{min-width:19px;min-height:19px;accent-color:#284b36}
+.crossing-fields select:focus-visible,.cross-consent:focus-within{outline:3px solid #a3632a;outline-offset:2px}
+@media(max-width:720px){.crossing-fields{grid-template-columns:1fr}}
