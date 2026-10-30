@@ -1,5 +1,6 @@
 import {checkRoutes,makeWorkLaunch} from "./router.mjs";
 import {checkCatalog,selectInterestRoads} from "../porch/interest-roads.mjs";
+import {makePublicOnlyCrossing} from "./crossing-bridge.mjs";
 const $=id=>document.getElementById(id);
 const form=$("work-form"),choices=$("job-choices"),status=$("work-status"),output=$("work-output");
 let registry=null,current=null,lastURL=null,researchIndexPromise=null,seq=0;
@@ -16,6 +17,7 @@ function invalidate(){
  current=null;seq++;output.hidden=true;$("work-owners").replaceChildren();$("work-research-results").replaceChildren();
  $("work-research-status").textContent="Research not requested.";
  status.textContent="Editing locally. Nothing sent, stored or run.";
+ $("cross-ack").checked=false;$("cross-status").textContent="No crossing prepared. No data sent.";
 }
 function drawOwner(holder,c,kind="owner"){
  const card=document.createElement("article");card.className="work-owner";
@@ -102,6 +104,18 @@ function download(name,content,mime){
 $("copy-work").addEventListener("click",()=>{if(current)copyText(current.markdown)});
 $("save-markdown").addEventListener("click",()=>{if(current)download("abundent-work-brief.md",current.markdown+"\n","text/markdown;charset=utf-8")});
 $("save-json").addEventListener("click",()=>{if(current)download("abundent-proposed-work.json",JSON.stringify(current.packet,null,2)+"\n","application/json")});
+$("save-crossing").addEventListener("click",()=>{
+ if(!current){$("cross-status").textContent="Make one work card before preparing a separate crossing.";return;}
+ if(!$("cross-ack").checked){$("cross-status").textContent="Choose explicit acknowledgement before exporting.";return;}
+ try{
+  // No particular, note, identity, receipt, or source text is read by this bridge.
+  const packet=makePublicOnlyCrossing({topic:$("cross-topic").value,capacity:$("cross-capacity").value});
+  download("abundent-public-crossing.json",JSON.stringify(packet,null,2)+"\n","application/json");
+  $("cross-status").textContent="Public-only ticket downloaded locally. Not sent, approved or received.";
+ }catch(e){$("cross-status").textContent=e.message}
+});
+$("cross-topic").addEventListener("change",()=>{$("cross-ack").checked=false;$("cross-status").textContent="Nothing has crossed."});
+$("cross-capacity").addEventListener("change",()=>{$("cross-ack").checked=false;$("cross-status").textContent="Nothing has crossed."});
 $("find-research").addEventListener("click",async()=>{
  if(!current)return;
  const ticket=++seq;
