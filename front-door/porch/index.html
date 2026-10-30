@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#284b36">
+<meta name="description" content="Turn one need, offer, or idea into a small note a real person can respond to. No account or automatic posting.">
+<meta name="robots" content="noindex,nofollow">
+<link rel="stylesheet" href="/style.css"><link rel="stylesheet" href="/porch/porch.css">
+<link rel="alternate" type="text/plain" href="/llms.txt" title="Information for computers">
+<script type="module" src="/porch/app.mjs"></script>
+<title>The Porch — Abundent</title>
+</head>
+<body>
+<a class="skip" href="#main">Skip to the porch</a>
+<div class="container">
+<header class="top"><a class="brand" href="/">abundent<span>.</span></a><nav aria-label="Main menu"><a href="/">Start over</a><a href="/explore/">Look around</a><a href="/for-computers/">For computers</a></nav></header>
+<main id="main">
+<section class="window">
+ <div class="bar"><span class="lights" aria-hidden="true"><i></i><i></i><i></i></span><span>ABUNDENT / PORCH.EXE</span><span class="live">people welcome</span></div>
+ <div class="hero porch-intro">
+   <p class="kicker">One small thing at a time.</p>
+   <h1>What brings you by?</h1>
+   <p class="lead">You don't need a plan, a résumé, or a perfect explanation. Just something real.</p>
+   <p class="sub">The porch helps you put a need, an offer, or a question into words you can actually share. <strong>It won't post anything or promise that someone is waiting.</strong></p>
+ </div>
+ <form id="porch-form" class="porch-body" novalidate>
+   <fieldset class="intent">
+     <legend><span class="step">01</span> First, pick a starting point.</legend>
+     <div class="intent-grid">
+       <label class="intent-choice"><input type="radio" name="kind" value="need" checked><span><strong>I could use a hand.</strong><small>Something would be easier with help.</small></span></label>
+       <label class="intent-choice"><input type="radio" name="kind" value="offer"><span><strong>I have something to offer.</strong><small>A skill, an idea, a thing, or some time.</small></span></label>
+       <label class="intent-choice"><input type="radio" name="kind" value="question"><span><strong>I noticed something.</strong><small>A question or a problem worth exploring.</small></span></label>
+     </div>
+   </fieldset>
+   <div class="form-section">
+    <label for="particular"><span class="step">02</span> <strong id="what-label">What would help?</strong></label>
+    <p class="help-text" id="what-help">A simple sentence is enough. For example: “I'd like someone to help me figure out where to start.”</p>
+    <textarea id="particular" name="particular" rows="4" minlength="8" maxlength="420" required placeholder="One small, specific thing…" aria-describedby="what-help particular-count"></textarea>
+    <div class="counter" id="particular-count">0 / 420</div>
+   </div>
+   <div class="form-grid">
+     <div class="form-section">
+       <label for="area"><span class="step">03</span> <strong>Where does it matter?</strong> <small>(optional)</small></label>
+       <p class="help-text">Just a city, area, or “online.” No addresses.</p>
+       <input id="area" name="area" maxlength="90" placeholder="e.g. Waseca, MN · online">
+     </div>
+     <div class="form-section">
+       <label for="when"><strong>How soon?</strong> <small>(optional)</small></label>
+       <p class="help-text">This isn't a scheduling commitment.</p>
+       <select id="when" name="when"><option value="Whenever works">Whenever works</option><option value="Soon, if possible">Soon, if possible</option><option value="Just exploring">Just exploring</option></select>
+     </div>
+   </div>
+   <div class="form-section">
+     <label for="next"><span class="step">04</span> <strong>What's one small next step?</strong> <small>(optional)</small></label>
+     <p class="help-text">Something a person could actually respond to: a conversation, a link, a borrowed tool, a few minutes together.</p>
+     <textarea id="next" name="next" rows="2" maxlength="220" placeholder="One next step would be…"></textarea>
+   </div>
+   <div class="privacy"><strong>A quick privacy note.</strong> Don't put passwords, exact addresses, medical information, children's details, or someone else's private story here. This form doesn't save or transmit your text. If you choose Email, your email app opens a draft to us@abundent.org; you decide whether to send it.</div>
+   <div class="porch-actions">
+     <button class="porch-button" type="submit">Make my note <span aria-hidden="true">→</span></button>
+     <button type="reset" class="porch-secondary">Start over</button>
+   </div>
+   <p class="help-text" id="form-status" role="status" aria-live="polite">Your words stay in this browser tab until you choose what to do with them.</p>
+ </form>
+ <section class="result" id="result" hidden tabindex="-1" aria-labelledby="result-title">
+   <p class="kicker">Your note is ready · not sent</p>
+   <h2 id="result-title">Now it can go somewhere.</h2>
+   <p>Maybe to a neighbor, a friend, a local group, or to us. Sharing is your decision.</p>
+   <pre id="note-preview" class="note-preview"></pre>
+   <div class="porch-actions">
+     <button id="copy-note" type="button" class="porch-button">Copy note</button>
+     <button id="save-note" type="button" class="porch-secondary">Save a text file</button>
+     <a id="email-note" class="porch-secondary" href="mailto:us@abundent.org?subject=Hello%20from%20the%20porch">Open email draft ↗</a>
+   </div>
+   <p class="help-text" id="result-status" role="status" aria-live="polite">No message was sent or posted by this website.</p>
+   <p class="help-text">Email goes to Abundent's mailbox, not an automated matching system. We may not be able to respond quickly or find a match. No one is assigned work by sending a message.</p>
+ </section>
+</section>
+<section class="lower" aria-label="Other ways to begin">
+ <div><h2>Want to see what's already happening?</h2><p>There's a separate local experiment in Waseca where proposed questions and offers can be reviewed for public display. It's a different space with its own rules.</p><a href="https://reality.abundent.org/">Explore the Waseca experiment ↗</a></div>
+ <div class="desk"><h2>Rather just talk?</h2><p>That's fine. You don't have to fill anything out.</p><p><a href="mailto:us@abundent.org?subject=Hello%20from%20the%20porch">Write a plain email ↗</a></p><p>And if you were looking for webZ's technical crossing rehearsal, <a href="https://webz.abundent.org/porch/">it's still here ↗</a>.</p></div>
+</section>
+</main>
+<footer><span>One human yes cannot speak for another.</span><span><span class="badge">PORCH-002 · STAGING</span> · <a href="/">Back to Abundent</a></span></footer>
+</div></body></html>
