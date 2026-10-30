@@ -1,4 +1,5 @@
 import {prepare,mailto} from "./engine.mjs";
+import {installPrivateReceiver} from "./private-inbox.mjs";
 const $=id=>document.getElementById(id);
 const form=$("porch-form");let current=null,objectUrl=null;
 const entryKind=new URL(location.href).searchParams.get("kind");
@@ -33,3 +34,5 @@ $("save-note").addEventListener("click",()=>{
 $("email-note").addEventListener("click",()=>{$("result-status").textContent="Your email app may open a draft. Nothing is sent until you press Send there.";});
 
 updateIntent();
+
+installPrivateReceiver({getPrepared:()=>current});
