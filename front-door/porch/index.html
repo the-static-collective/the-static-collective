@@ -55,7 +55,7 @@
      <p class="help-text">Something a person could actually respond to: a conversation, a link, a borrowed tool, a few minutes together.</p>
      <textarea id="next" name="next" rows="2" maxlength="220" placeholder="One next step would be…"></textarea>
    </div>
-   <div class="privacy"><strong>A quick privacy note.</strong> Don't put passwords, exact addresses, medical information, children's details, or someone else's private story here. This form doesn't save or transmit your text. If you choose Email, your email app opens a draft to us@abundent.org; you decide whether to send it.</div>
+   <div class="privacy"><strong>A quick privacy note.</strong> Don't put passwords, exact addresses, medical information, children's details, or someone else's private story here. While composing, your text stays in your browser tab. Choosing Email opens a draft you control. Choosing Send privately for review is a separate, explicit action that stores your note in our private queue for up to 30 days.</div>
    <div class="porch-actions">
      <button class="porch-button" type="submit">Make my note <span aria-hidden="true">→</span></button>
      <button type="reset" class="porch-secondary">Start over</button>
@@ -73,8 +73,35 @@
      <a id="email-note" class="porch-secondary" href="mailto:us@abundent.org?subject=Hello%20from%20the%20porch">Open email draft ↗</a>
    </div>
    <p class="help-text" id="result-status" role="status" aria-live="polite">No message was sent or posted by this website.</p>
+   <section class="private-submit" aria-labelledby="private-submit-title">
+     <h3 id="private-submit-title">Want to leave this note for review?</h3>
+     <p>Unlike copying or saving, this option sends your note to Abundent's private review queue. JAR;VIS may suggest a topic, but <strong>only a human operator can decide whether and how to answer.</strong> Nothing gets published, matched, emailed, or assigned automatically.</p>
+     <p class="help-text">We cannot promise anyone will answer. The note is kept for up to 30 days, or until you withdraw it. You'll get a private receipt that lets you check for a reply without sharing your contact details.</p>
+     <label class="consent-label"><input type="checkbox" id="private-consent"> <span>I understand this sends the text above for private review, and it contains no sensitive information or anyone else's details.</span></label>
+     <div class="porch-actions"><button id="send-private" type="button" class="porch-button" disabled>Send privately for review →</button></div>
+     <p id="private-status" class="help-text" role="status" aria-live="polite">Not sent.</p>
+     <div id="receipt-panel" hidden>
+       <strong>Received — save this private receipt.</strong>
+       <p class="help-text">Anyone with both values can read your review status or withdraw this note. Don't share them publicly. We can't recover the secret if you lose it.</p>
+       <label for="receipt-id">Receipt ID</label><input id="receipt-id" readonly autocomplete="off">
+       <label for="receipt-key">Private receipt key</label><textarea id="receipt-key" rows="2" readonly autocomplete="off" spellcheck="false"></textarea>
+       <div class="porch-actions"><button type="button" id="copy-receipt" class="porch-secondary">Copy receipt</button><button type="button" id="save-receipt" class="porch-secondary">Save receipt file</button></div>
+     </div>
+   </section>
    <p class="help-text">Email goes to Abundent's mailbox, not an automated matching system. We may not be able to respond quickly or find a match. No one is assigned work by sending a message.</p>
  </section>
+</section>
+<section class="window receipt-lookup" aria-labelledby="lookup-title">
+ <div class="bar"><span class="lights" aria-hidden="true"><i></i><i></i><i></i></span><span>ABUNDENT / CHECK_A_NOTE.EXE</span><span class="live">private receipt</span></div>
+ <div class="porch-body">
+   <h2 id="lookup-title">Already left a note?</h2>
+   <p>You can check whether a human reviewed it, or withdraw it. We do not automatically email you.</p>
+   <label for="lookup-id">Receipt ID</label><input id="lookup-id" inputmode="text" autocomplete="off" placeholder="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx">
+   <label for="lookup-key">Private receipt key</label><input id="lookup-key" type="password" autocomplete="off" spellcheck="false" placeholder="The key you saved">
+   <div class="porch-actions"><button type="button" id="check-receipt" class="porch-button">Check my note</button><button type="button" id="withdraw-receipt" class="porch-secondary">Withdraw and delete</button></div>
+   <p id="lookup-status" role="status" aria-live="polite">Checking never publishes your note.</p>
+   <p id="lookup-reply" class="status-reply" hidden></p>
+ </div>
 </section>
 <section class="lower" aria-label="Other ways to begin">
  <div><h2>Want to see what's already happening?</h2><p>There's a separate local experiment in Waseca where proposed questions and offers can be reviewed for public display. It's a different space with its own rules.</p><a href="https://reality.abundent.org/">Explore the Waseca experiment ↗</a></div>
