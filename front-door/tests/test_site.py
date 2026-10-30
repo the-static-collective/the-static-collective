@@ -96,8 +96,32 @@ class TestSite(unittest.TestCase):
     self.assertIn('misconfigured',census)
     self.assertIn('Open PRs are not merged architecture',census)
 
+  def test_operator_work_desk_uses_real_source_owned_routes(self):
+    s=(root/'work/index.html').read_text()
+    self.assertIn('name="attention"',s)
+    self.assertIn('id="make-work"',s)
+    self.assertIn('id="save-json"',s)
+    self.assertIn('id="find-research"',s)
+    self.assertIn('id="job-choices"',s)
+    self.assertIn('noindex,nofollow',s)
+    script=(root/'work/app.mjs').read_text()
+    self.assertIn('makeWorkLaunch(',script)
+    self.assertIn('selectInterestRoads(',script)
+    self.assertIn('credentials:"omit"',script)
+    self.assertIn('textContent',script)
+    self.assertNotIn('localStorage',script)
+    self.assertNotIn('sessionStorage',script)
+    self.assertNotIn('fetch(current.',script)
+    data=json.loads((root/'work/routes-v1.json').read_text())
+    self.assertEqual(data['schema'],'abundent/operator-routes-v1')
+    self.assertEqual(len(data['journeys']),8)
+    self.assertGreaterEqual(len(data['capabilities']),30)
+    self.assertIn('href="/work/"',(root/'index.html').read_text())
+    self.assertIn('href="/work/"',(root/'doors/index.html').read_text())
+    self.assertTrue((root/'docs/OPERATOR-ROUTES-008.md').exists())
+
   def test_feedback_and_demo_doors(self):
-    for p in ['index.html','explore/index.html','porch/index.html','for-computers/index.html','feedback/index.html','try/index.html','doors/index.html']:
+    for p in ['index.html','explore/index.html','porch/index.html','for-computers/index.html','feedback/index.html','try/index.html','doors/index.html','work/index.html']:
       s=(root/p).read_text()
       self.assertIn('/feedback/widget.mjs',s,p)
       self.assertIn('/feedback/widget.css',s,p)
