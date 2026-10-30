@@ -54,6 +54,8 @@ class TestSite(unittest.TestCase):
     self.assertIn('name="attention" value="few" checked',s)
     self.assertIn('name="attention" value="longer"',s)
     self.assertIn("it is not included in the note you share",s)
+    self.assertIn('id="interest-roads-details"',s)
+    self.assertIn('Curious where else this could lead?',s)
     self.assertIn('id="interest-road-status"',s)
     self.assertIn('id="interest-road-experiments"',s)
     self.assertIn('id="interest-road-questions"',s)
