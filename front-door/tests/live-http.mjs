@@ -23,3 +23,9 @@ for(const [path,token] of paths){
  console.log("PUBLIC GET OK",path,"HTTP",res.status);
 }
 console.log("Public first-party site routing and feedback entry verified (GET only, no person or mail touched).");
+
+try {
+ const home=await fetch("https://abundent.org/",{signal:AbortSignal.timeout(16000),redirect:"follow"});
+ const source=await home.text();
+ console.log("EXISTING APEX",home.status,"human-link-present=",source.includes("https://hello.abundent.org/"),"main-webZ=",source.includes("A WEB OF WORLDS"));
+} catch(e) {console.log("EXISTING APEX observation unavailable:",e.name);}
