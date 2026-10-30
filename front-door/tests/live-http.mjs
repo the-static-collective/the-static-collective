@@ -10,7 +10,7 @@ const paths=[
  ["/doors/","Every door we can point to."],
  ["/feedback/widget.mjs","Send report"],
  ["/feedback/widget.css",".ab-feedback-button"],
- ["/try/demo.mjs","fictional crossing"]
+ ["/try/demo.mjs","SYNTHETIC EXAMPLE"]
 ];
 for(const [path,token] of paths){
  const res=await fetch(base+path,{redirect:"follow",signal:AbortSignal.timeout(16000)});
