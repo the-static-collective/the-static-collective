@@ -128,6 +128,15 @@ class TestSite(unittest.TestCase):
     self.assertIn('href="/work/"',(root/'index.html').read_text())
     self.assertIn('href="/work/"',(root/'doors/index.html').read_text())
     self.assertTrue((root/'docs/OPERATOR-ROUTES-008.md').exists())
+    makers=(root/'work/makers/index.html').read_text()
+    self.assertIn('abundent-native-output.yml',makers)
+    self.assertIn('free-graph.packet.json',makers)
+    self.assertIn('comic.html',makers)
+    self.assertIn('HOLD',makers)
+    self.assertIn('href="/work/makers/"',s)
+    self.assertIn('href="/work/makers/"',(root/'index.html').read_text())
+    self.assertTrue((root/'native-output/build_graph.py').is_file())
+
 
   def test_feedback_and_demo_doors(self):
     for p in ['index.html','explore/index.html','porch/index.html','for-computers/index.html','feedback/index.html','try/index.html','doors/index.html','work/index.html']:
