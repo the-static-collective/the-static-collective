@@ -1,0 +1,21 @@
+name: AGENT-COMMONS-013 bounded local multi-AI guest + MCP proof
+on:
+  pull_request:
+    paths: ['agent-commons/**','.github/workflows/agent-commons-proof.yml']
+  push:
+    branches: ['feature/agent-commons-mcp-party-013']
+    paths: ['agent-commons/**','.github/workflows/agent-commons-proof.yml']
+permissions: {contents: read}
+jobs:
+  guest-room-contract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with: {persist-credentials: false}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Real localhost HTTP and MCP protocol with synthetic provider spies (NO REAL MODEL CALLS)
+        run: |
+          python3 -m unittest discover -s agent-commons/tests -v
+          python3 -m py_compile agent-commons/commons.py agent-commons/mcp_bridge.py agent-commons/provider_party.py
