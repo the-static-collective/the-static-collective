@@ -1,0 +1,43 @@
+name: AGENT-COMMONS-015 independent live hosted quota-edge probe
+on:
+  push:
+    branches: [feature/agent-commons-party-budget-015]
+    paths:
+      - 'agent-commons/hosted/supabase/functions/agent-commons-party-015/**'
+      - 'agent-commons/hosted/supabase/migrations/*ac015*'
+      - '.github/workflows/agent-commons-party-015-wire.yml'
+  pull_request:
+    paths:
+      - 'agent-commons/hosted/supabase/functions/agent-commons-party-015/**'
+      - 'agent-commons/hosted/supabase/migrations/*ac015*'
+      - '.github/workflows/agent-commons-party-015-wire.yml'
+permissions: {contents: read}
+jobs:
+  external-verifier:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Independent Internet HTTPS probe of true hosted AC015 edge; no API keys or inference
+        run: |
+          python3 - <<'PY'
+          import json,urllib.request,urllib.error
+          base='https://kbhqacsdvjsstzyplqij.supabase.co/functions/v1/agent-commons-party-015'
+          req=urllib.request.Request(base+'/health',headers={'Accept':'application/json'})
+          with urllib.request.urlopen(req,timeout=15) as r:
+            assert r.status==200
+            obj=json.load(r)
+          assert obj['schema']=='agent-commons/party-015'
+          assert obj['providerCalls'] is False
+          assert obj['publicProviderCalls'] is False
+          assert obj['globalDailyMax']==6
+          payload=b'{"room":"first-table","provider":"groq","context_sha256":"'+b'a'*64+b'"}'
+          req=urllib.request.Request(base+'/claim',data=payload,headers={'Content-Type':'application/json'},method='POST')
+          try:urllib.request.urlopen(req,timeout=15);raise AssertionError('unauthorized claim unexpectedly worked')
+          except urllib.error.HTTPError as e:
+            assert e.code==401,(e.code,e.read(200))
+            assert json.loads(e.read() or b'{}').get('error','AUTH_REQUIRED')=='AUTH_REQUIRED'
+          print('ACTUAL HTTPS AC015: SAFE READ 200, NO TOKEN WRITE 401, NO MODEL CALLS')
+          PY
