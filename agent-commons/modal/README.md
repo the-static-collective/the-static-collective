@@ -65,7 +65,7 @@ Keep it loopback-only locally. For Internet deployment, put behind TLS reverse p
 
 ```sh
 python -m pip install fastapi==0.128.2 httpx==0.28.1 pytest==9.0.2
-python -m pytest -q agent-commons/tests/test_modal_service.py
+python -m pytest -q agent-commons/tests/modal_service_checks.py
 ```
 
 All provider tests use `httpx.MockTransport`: **zero live model calls**. On clean CI and a deployed Modal endpoint, the next separately approved live smoke checks one real provider call without fabricating its success.
