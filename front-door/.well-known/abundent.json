@@ -1,0 +1,65 @@
+{
+  "version": "front-door-010-human-feedback-and-demo",
+  "status": "PUBLIC_STAGING_CANDIDATE",
+  "humanEntry": "/",
+  "machineIndex": "/for-computers/",
+  "machineText": "/llms.txt",
+  "owner": "Abundent / Static Collective",
+  "assertions": [
+    "Staging human front door is separate from current webZ apex.",
+    "Private submissions are possible ONLY by explicit user consent; no automatic routing to participants.",
+    "Links to independent experiments are not field verification or partner permission."
+  ],
+  "entries": [
+    {
+      "label": "Human Porch",
+      "url": "/porch/",
+      "status": "live optional private non-sensitive intake, receipt/status/withdraw; no automated matching"
+    },
+    {
+      "label": "Public doors",
+      "url": "https://doors.abundent.org/",
+      "status": "experimental link"
+    },
+    {
+      "label": "Garden",
+      "url": "https://garden.abundent.org/",
+      "status": "independent prototype"
+    },
+    {
+      "label": "Reality 2.0",
+      "url": "https://reality.abundent.org/",
+      "status": "experimental link"
+    },
+    {
+      "label": "Becoming",
+      "url": "https://becoming.abundent.org/",
+      "status": "experimental link"
+    },
+    {
+      "label": "webZ",
+      "url": "https://webz.abundent.org/",
+      "status": "source-owned experiment"
+    },
+    {
+      "label": "Books for computers",
+      "url": "https://books.abundent.org/",
+      "status": "separately deployed experiment"
+    },
+    {
+      "label": "Feedback",
+      "url": "/feedback/",
+      "status": "private human-review submissions with receipt, no publishing or guaranteed response"
+    },
+    {
+      "label": "Fictional demo",
+      "url": "/try/",
+      "status": "local browser-only sample; no backend effects"
+    },
+    {
+      "label": "All hosted experiment doors",
+      "url": "/doors/",
+      "status": "configured domain links, not availability or outcome guarantees"
+    }
+  ]
+}

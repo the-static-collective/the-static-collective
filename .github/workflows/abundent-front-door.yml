@@ -1,0 +1,34 @@
+name: Abundent front door
+on:
+  pull_request:
+    paths:
+      - 'front-door/**'
+      - '.github/workflows/abundent-front-door.yml'
+  push:
+    paths:
+      - 'front-door/**'
+      - '.github/workflows/abundent-front-door.yml'
+jobs:
+  static-contract:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Human / machine split and staging gates
+        run: cd front-door && python -m unittest discover -s tests -v
+      - name: Porch note engine unit tests
+        run: node --test front-door/porch/engine.test.mjs
+      - name: Porch attendant local route tests
+        run: node --test front-door/guide/routes.test.mjs
+      - name: First-party browser scripts parse
+        run: node --check front-door/porch/app.mjs && node --check front-door/porch/private-inbox.mjs && node --check front-door/feedback/widget.mjs && node --check front-door/try/demo.mjs && node --check front-door/guide/routes.mjs && node --check front-door/guide/attendant.mjs
+
+      - name: Confirm public first-party pages resolve through actual DNS
+        run: node front-door/tests/live-http.mjs

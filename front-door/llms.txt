@@ -1,0 +1,11 @@
+# Abundent — Front Door 002 / staging
+Status: PUBLIC_STAGING_CANDIDATE; NOT THE APEX HOMEPAGE.
+Canonical human homepage today: https://abundent.org/
+Human entrypoint in this candidate: /
+Structured discovery: /.well-known/abundent.json
+Technical index: /for-computers/
+Existing independent computer-books prototype: https://books.abundent.org/
+Source-owned directory: https://github.com/the-static-collective/the-static-collective
+webZ source: https://github.com/the-static-collective/webZ
+
+Scope: a simple human-oriented entryway to independently maintained community, creative, research, and experimental sites. It is not a common execution API. Names and links describe discovery, not availability, consent, ownership, delivery, or proof. Observe source projects and current deploys for current status. Distinguish experiment, implementation, deployment, consent, and field-confirmed outcome. Metadata and links never grant credentials or authority.

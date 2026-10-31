@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#274433">
+  <meta name="description" content="Ope. Tell us what landed on your porch. A small, private JAR;VIS-inspired guide helps you find one useful door into Abundent.">
+  <meta name="robots" content="noindex,nofollow">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/guide/attendant.css">
+  <script type="module" src="/guide/attendant.mjs"></script>
+  <link rel="alternate" type="text/plain" href="/llms.txt" title="Notes for computers">
+  <link rel="alternate" type="application/json" href="/.well-known/abundent.json" title="Abundent machine-readable directory">
+  <title>Abundent — Start with you.</title>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"Abundent","description":"Small experiments in making useful connections easier.","url":"https://abundent.org/"}</script>
+<link rel="stylesheet" href="/feedback/widget.css"><script type="module" src="/feedback/widget.mjs"></script></head>
+<body>
+<a href="#main" class="skip">Skip to the point</a>
+<div class="container">
+  <header class="top">
+    <a class="brand" href="/" aria-label="Abundent home">abundent<span>.</span></a>
+    <nav aria-label="Main menu"><a href="https://abundent.org/paper/">The Next Paper</a><a href="#jarvis-hello">Ask JAR;VIS</a><a href="/porch/">Human porch</a><a href="/explore/">Wander around</a><a href="/doors/">All the doors</a></nav>
+  </header>
+  <main id="main">
+    <section class="window" aria-labelledby="welcome">
+      <div class="bar"><span aria-hidden="true" class="lights"><i></i><i></i><i></i></span><span>ABUNDENT / HELLO.EXE</span><span class="live">person mode</span></div>
+      <div class="hero">
+        <p class="kicker">Hi. You're a person. That's plenty. · 1999-ish internet, actual neighbors.</p>
+        <h1 id="welcome">Ope. What landed <em>on your porch?</em></h1>
+        <p class="lead">A problem? A peculiar idea? Half a Saturday and a pickup truck?</p>
+        <p class="sub">Bring whatever's on your mind. We'll try to point you toward something useful. We have songs, neighbors, newspapers from tomorrow, and some surprisingly opinionated computers. You can leave whenever you like.</p>
+        <section class="jarvis-deck" id="jarvis-hello" aria-labelledby="jarvis-title">
+          <div class="jarvis-header"><span><strong>JAR;VIS</strong> / THE PORCH ATTENDANT</span><span class="jarvis-status">READY · LOCAL MODE · NO MEMORY</span></div>
+          <h2 class="jarvis-title" id="jarvis-title">Well, what's going on?</h2>
+          <form id="jarvis-form">
+            <label for="jarvis-question">Tell me in your own words. It can be a need, a ridiculous idea, or something you don't have a name for yet.</label>
+            <textarea id="jarvis-question" name="question" rows="3" maxlength="320" placeholder="I was thinking, what if we..." aria-describedby="jarvis-privacy" autocomplete="off"></textarea>
+            <div class="jarvis-controls"><button type="submit" class="jarvis-action">Find me a door →</button><button type="button" id="jarvis-surprise" class="jarvis-gentle">Surprise me</button></div>
+            <p id="jarvis-prompt-status" class="jarvis-fine" role="status" aria-live="polite">Nothing has been sent.</p>
+          </form>
+          <p class="jarvis-fine" id="jarvis-privacy">This small JAR;VIS wayfinder looks for clues in what you type. It's a local rules-based guide, not a live AI conversation. Nothing is stored, sent, or shared by this step. Please leave private details out.</p>
+          <div class="prompt-deck" aria-label="Example prompts">
+            <button class="prompt" type="button" data-prompt="What if a neighbor could bring food to a community table?">Something with food</button>
+            <button class="prompt" type="button" data-prompt="I want to make music with other people.">A music thing</button>
+            <button class="prompt" type="button" data-prompt="I have an idea, but I don't know where to start.">Half an idea</button>
+            <button class="prompt" type="button" data-prompt="I'd like to offer one hour to help somebody build something.">An hour to spare</button>
+          </div>
+          <div id="jarvis-reply" class="jarvis-reply" tabindex="-1" hidden aria-labelledby="jarvis-reply-title">
+            <div class="route-index">JAR;VIS / POSSIBLE PATHS · NO ONE ASSIGNED</div>
+            <h3 id="jarvis-reply-title">Here's where I'd look first.</h3>
+            <p id="jarvis-intro"></p>
+            <div id="jarvis-doors" class="jarvis-routes"></div>
+            <p id="jarvis-status" class="jarvis-note" role="status" aria-live="polite">Nothing has been sent.</p>
+            <div class="jarvis-controls"><button type="button" id="jarvis-restart" class="jarvis-gentle" style="color:#254533;border-color:#47674c">Try another question</button><a href="https://connections.abundent.org/" style="font-weight:750;color:#20553b">Go to the bigger JAR;VIS machine ↗</a></div>
+          </div>
+        </section>
+        <aside class="recent-paper" aria-label="The newest newspaper">
+          <p><strong>EXTRA! EXTRA! THE FUTURE IS RUNNING A LITTLE LATE.</strong></p>
+          <p>Our first newspaper reports an imaginary grocery on a real folding table. There is a real invitation inside.</p>
+          <a href="https://abundent.org/paper/">Read The Next Paper · Issue 000 →</a>
+        </aside>
+        <details class="fallback-doors" id="quick-doors"><summary>I'd rather skip the machine. Just show me a few places.</summary>
+          <div class="choices" aria-label="Simple ways to begin">
+            <a class="choice help" href="/porch/?kind=need"><strong>I could use a hand.</strong><span>Make a small note. You choose whether to send it to private review. No promise of help.</span><b aria-hidden="true">→</b></a>
+            <a class="choice give" href="/porch/?kind=offer"><strong>I've got something to offer.</strong><span>A useful skill, a little time, or a question. Start with what you actually have.</span><b aria-hidden="true">→</b></a>
+            <a class="choice look" href="/explore/"><strong>I'm just looking around.</strong><span>Walk through the workshop. No account and no commitments.</span><b aria-hidden="true">→</b></a>
+          </div>
+        </details>
+        <p class="fine">The porch guide is local-only. Other pages have their own rules; sending a note for private review always requires a separate choice.</p>
+      </div>
+    </section>
+    <div class="lower" id="about">
+      <section>
+        <h2>So, what's Abundent?</h2>
+        <p>We're testing a simple idea: <strong>people have more to offer each other than they know how to share.</strong></p>
+        <p>Sometimes what you need and what somebody else can offer are a few steps apart. We're building tools to make those steps easier to find.</p>
+        <p>We start with you. Hopefully, we don't stop there.</p>
+      </section>
+      <section class="desk">
+        <h2>The workshop is still pretty weird.</h2>
+        <p>There are real tools, fictional rehearsals, unfinished inventions, and a few things built out of digital duct tape. We label the difference.</p>
+        <p><a href="/doors/">Find the whole workshop →</a></p>
+        <p>Find something broken? Use the “Something broken?” button on this page. It goes to our private review queue.</p>
+      </section>
+    </div>
+  </main>
+  <footer><div><strong>abundent.</strong> People first. Weird computers welcome.</div><div><span class="badge">HELLO-011 · PORCH ATTENDANT PREVIEW</span> · <a href="/for-computers/">For computers</a></div></footer>
+</div>
+</body>
+</html>
