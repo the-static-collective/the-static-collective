@@ -1,0 +1,21 @@
+{
+  "schema": "abundent/specificity-pressure-test-v1",
+  "status": "FICTIONAL_PUBLIC_FIXTURE",
+  "brief": "At 6:14 a.m. in snowy Waseca, a high-vis octopus opens a 61-minute grocery booth: three jars of dried beans, a guitar case, a chalkboard. Make a 23-second film and printable card; a neighbor may leave unnamed; invent no help.",
+  "requestedFilmSeconds": 23,
+  "requirements": [
+    "6:14 a.m.",
+    "Waseca",
+    "high-vis octopus",
+    "61-minute",
+    "three jars of dried beans",
+    "guitar case",
+    "chalkboard",
+    "23-second film",
+    "neighbor",
+    "unnamed",
+    "invent no help"
+  ],
+  "publicationAuthorized": false,
+  "realParticipants": false
+}
