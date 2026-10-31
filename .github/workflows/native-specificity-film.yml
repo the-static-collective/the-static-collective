@@ -1,0 +1,81 @@
+name: SPECIFICITY-011 two original source-owned films
+on:
+  pull_request:
+    paths:
+      - 'front-door/native-output/specificity-*'
+      - '.github/workflows/native-specificity-film.yml'
+  push:
+    branches: ['feature/native-specificity-011']
+    paths:
+      - 'front-door/native-output/specificity-*'
+      - '.github/workflows/native-specificity-film.yml'
+permissions: {contents: read}
+concurrency:
+  group: specificity-film-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  original-two-film-test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: front
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with: {node-version: '24'}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Check out independently owned and immutable original native source
+        run: |
+          git clone -q https://github.com/the-static-collective/CANNON.git cannon
+          git -C cannon checkout -q --detach f757bd954caade89cfd68f7ca1488a54fc723a2e
+          git clone -q https://github.com/the-static-collective/planZ.git planz
+          git -C planz checkout -q --detach d7eb38b90f7794ad2570644522f3da687f42cb0d
+          git clone -q https://github.com/the-static-collective/the-haunted-toaster.git toaster
+          git -C toaster checkout -q --detach a3ce7b1349a940325cb72362e818ce907a95f35c
+          sudo apt-get update -qq
+          sudo apt-get install -y ffmpeg fonts-dejavu-core
+          test "$(git -C cannon rev-parse HEAD)" = 'f757bd954caade89cfd68f7ca1488a54fc723a2e'
+          test "$(git -C planz rev-parse HEAD)" = 'd7eb38b90f7794ad2570644522f3da687f42cb0d'
+          test "$(git -C toaster rev-parse HEAD)" = 'a3ce7b1349a940325cb72362e818ce907a95f35c'
+      - name: Native source CANNON tests and unchanged original renderer contract
+        run: |
+          node --test cannon/test/minute-mail-native.test.mjs
+          node --check front/front-door/native-output/specificity-film.mjs
+      - name: Compile surreal public brief in original planZ, make TWO real CANNON / Toaster native films and Dogram receipts
+        run: |
+          node front/front-door/native-output/specificity-film.mjs cannon planz toaster film-out
+          node --input-type=module -e 'import{readFileSync}from"node:fs";const d=JSON.parse(readFileSync("film-out/specificity-audit.json"));if(d.observed.nativeVideosProduced!==2||d.observed.humanOutcomeVerified||d.observed.publicationAuthorized||d.inputs.requestedSeconds!==23||d.inputs.plannedScriptedSeconds.join(",")!=="6,10")process.exit(3);'
+      - name: Tamper native film and prove original Toaster verification refuses altered bytes
+        run: |
+          cp film-out/revised/minute-mail.mp4 film-out/revised/minute-mail.saved
+          printf 'FAKE' >> film-out/revised/minute-mail.mp4
+          if node cannon/scripts/minute-mail-native.mjs verify --plan film-out/plan1.json --toaster toaster --out film-out/revised; then
+            echo 'ERROR: forged media passed original receipt verification'; exit 1
+          fi
+          mv film-out/revised/minute-mail.saved film-out/revised/minute-mail.mp4
+          node cannon/scripts/minute-mail-native.mjs verify --plan film-out/plan1.json --toaster toaster --out film-out/revised
+      - name: Upload original native media and measured specificity, no secrets or publication claims
+        uses: actions/upload-artifact@v4
+        with:
+          name: cannon-specificity-011-two-real-toaster-films
+          path: |
+            film-out/request.json
+            film-out/intent.json
+            film-out/plan0.json
+            film-out/plan1.json
+            film-out/specificity-audit.json
+            film-out/proof/minute-mail.mp4
+            film-out/proof/original-minute-postcard.png
+            film-out/proof/minute-mail.video-receipt.json
+            film-out/proof/minute-mail.dogram.json
+            film-out/proof/storyboard.json
+            film-out/proof/native-proof.json
+            film-out/revised/minute-mail.mp4
+            film-out/revised/original-minute-postcard.png
+            film-out/revised/minute-mail.video-receipt.json
+            film-out/revised/minute-mail.dogram.json
+            film-out/revised/storyboard.json
+            film-out/revised/native-proof.json
+          retention-days: 14
