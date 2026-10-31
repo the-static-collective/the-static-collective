@@ -156,6 +156,6 @@ if __name__ == "__main__":
     p.add_argument("--base", default=".")
     p.add_argument("--freegraph", required=True)
     p.add_argument("--out", required=True)
-    p.add_argument("--scenario", choices=("garden", "application", "creative"), default="garden")
+    p.add_argument("--scenario", choices=("garden", "application", "creative", "octopus"), default="garden")
     a = p.parse_args()
     run(Path(a.base), Path(a.freegraph), Path(a.out), a.scenario)

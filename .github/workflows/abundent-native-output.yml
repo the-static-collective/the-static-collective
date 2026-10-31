@@ -16,11 +16,12 @@ on:
         description: 'Public synthetic illustration; never include private material'
         required: true
         type: choice
-        default: garden
+        default: octopus
         options:
           - garden
           - application
           - creative
+          - octopus
 permissions:
   contents: read
 concurrency:
@@ -116,7 +117,7 @@ jobs:
       - name: Resolve one public-only illustration preset; refuse freeform user narrative
         shell: bash
         env:
-          PRESET: ${{ inputs.preset || 'garden' }}
+          PRESET: ${{ inputs.preset || 'octopus' }}
         run: |
           case "$PRESET" in
             garden)
@@ -125,6 +126,8 @@ jobs:
               printf '%s\n' 'A six-month community pilot with one honest independently reviewable first result' > topic.txt ;;
             creative)
               printf '%s\n' 'A voluntary community story and music table that respects author rights' > topic.txt ;;
+            octopus)
+              printf '%s\n' 'At 6:14 a.m. in snowy Waseca, a high-vis octopus opens a 61-minute grocery booth: three jars of dried beans, a guitar case, a chalkboard. Make a 23-second film and printable card; a neighbor may leave unnamed; invent no help.' > topic.txt ;;
             *) echo 'Unknown public-only preset' >&2; exit 1 ;;
           esac
           printf '%s\n' "$PRESET" > scenario.txt
@@ -187,6 +190,9 @@ jobs:
           assert all(e['authority']=='none' for e in p['links'])
           assert len(p['nodes'])==6 and len(p['links'])==5
           PY
+      - name: Measure retained weird specificity in original CANNON output, not just topic echo
+        if: ${{ inputs.preset == 'octopus' || inputs.preset == '' }}
+        run: python3 front/front-door/native-output/specificity_audit.py .
       - name: Refuse forged authority and corrupted CANNON source outputs
         run: |
           cp return-loop/jarvis-attention.json return-loop/attention.save
@@ -222,5 +228,6 @@ jobs:
             graph-out/native-packet-id.txt
             graph-out/native-validation.json
             graph-out/source-graph.svg
+            graph-out/specificity-audit.json
             scenario.txt
           retention-days: 30
