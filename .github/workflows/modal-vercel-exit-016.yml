@@ -3,57 +3,105 @@ on:
   pull_request:
     paths:
       - 'agent-commons/modal/**'
+      - 'agent-commons/tests/modal_*_checks.py'
       - 'agent-commons/supabase/agent-commons-frontdoor-016.ts'
-      - 'agent-commons/tests/modal_service_checks.py'
       - '.github/workflows/modal-vercel-exit-016.yml'
   push:
-    branches:
-      - 'feature/modal-vercel-exit-016'
+    branches: ['feature/modal-vercel-exit-016']
     paths:
       - 'agent-commons/modal/**'
+      - 'agent-commons/tests/modal_*_checks.py'
       - 'agent-commons/supabase/agent-commons-frontdoor-016.ts'
-      - 'agent-commons/tests/modal_service_checks.py'
       - '.github/workflows/modal-vercel-exit-016.yml'
   workflow_dispatch:
     inputs:
-      deploy_confirm:
-        description: 'Type DEPLOY_MODAL_ONLY to run the explicit Modal deployment job'
+      reviewed_sha:
+        description: 'Full reviewed commit SHA on feature/modal-vercel-exit-016'
         required: true
+        type: string
+      modal_environment:
+        description: 'Modal environment containing the named Secret and approved spend cap'
+        default: 'main'
+        required: true
+        type: string
+      deploy_confirm:
+        description: 'PREFLIGHT_ONLY reads metadata; DEPLOY_MODAL_ONLY authorizes deployment'
+        default: 'PREFLIGHT_ONLY'
+        required: true
+        type: choice
+        options: ['PREFLIGHT_ONLY', 'DEPLOY_MODAL_ONLY']
+      spend_confirm:
+        description: 'Deployment also requires I_SET_MODAL_SPEND_CAP after verifying workspace budget'
+        required: false
         type: string
 permissions: {contents: read}
 jobs:
   check:
     runs-on: ubuntu-latest
     timeout-minutes: 8
+    services:
+      postgres:
+        image: postgres:17-alpine@sha256:266d3c257594e195b309ae9d1805e54c788f1d7b375f56bf6c367aac6c917e7b
+        env:
+          POSTGRES_HOST_AUTH_METHOD: trust
+          POSTGRES_DB: commons_017_test
+        ports: ['5432:5432']
+        options: >-
+          --health-cmd pg_isready --health-interval 5s
+          --health-timeout 5s --health-retries 10
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
       - uses: actions/setup-python@v5
         with: {python-version: '3.12'}
-      - name: Run entirely local mocked web + provider tests
+      - name: Local service, real SQL concurrency, and offline Modal SDK checks
+        env:
+          COMMONS_TEST_DATABASE_URL: postgresql://postgres@127.0.0.1:5432/commons_017_test
         run: |
-          python -m pip install fastapi==0.128.2 httpx==0.28.1 pytest==9.0.2
-          python -m py_compile agent-commons/modal/service.py agent-commons/modal/entrypoint.py
-          python -m pytest -q agent-commons/tests/modal_service_checks.py
-  deploy:
-    if: ${{ github.event_name == 'workflow_dispatch' && inputs.deploy_confirm == 'DEPLOY_MODAL_ONLY' }}
+          python -m pip install -r agent-commons/modal/requirements-check.txt
+          python -m py_compile agent-commons/modal/*.py
+          python agent-commons/modal/preflight.py
+          python -m pytest -q agent-commons/tests/modal_*_checks.py
+          python -m unittest discover -s agent-commons/tests -v
+  operator:
+    if: ${{ github.event_name == 'workflow_dispatch' }}
     needs: [check]
     runs-on: ubuntu-latest
     timeout-minutes: 12
+    concurrency:
+      group: modal-commons-${{ inputs.modal_environment }}
+      cancel-in-progress: false
+    env:
+      MODAL_ENVIRONMENT: ${{ inputs.modal_environment }}
+      REVIEWED_SHA: ${{ inputs.reviewed_sha }}
+      DEPLOY_CONFIRM: ${{ inputs.deploy_confirm }}
+      SPEND_CONFIRM: ${{ inputs.spend_confirm }}
     steps:
       - uses: actions/checkout@v4
+        with: {ref: '${{ github.sha }}', persist-credentials: false}
       - uses: actions/setup-python@v5
         with: {python-version: '3.12'}
-      - name: Refuse unconfigured Modal credentials
+      - name: Require reviewed source branch and exact commit before loading credentials
+        run: |
+          python agent-commons/modal/preflight.py --reviewed-sha "$REVIEWED_SHA"
+          if [ "$DEPLOY_CONFIRM" = DEPLOY_MODAL_ONLY ] && [ "$SPEND_CONFIRM" != I_SET_MODAL_SPEND_CAP ]; then
+            echo 'HOLD: verify the workspace spend cap and supply I_SET_MODAL_SPEND_CAP'
+            exit 2
+          fi
+      - name: Install pinned CLI
+        run: python -m pip install -r agent-commons/modal/requirements-check.txt
+      - name: Read-only Modal authentication and Secret metadata preflight
+        env:
+          MODAL_TOKEN_ID: ${{ secrets.MODAL_TOKEN_ID }}
+          MODAL_TOKEN_SECRET: ${{ secrets.MODAL_TOKEN_SECRET }}
+        run: python agent-commons/modal/preflight.py --modal --environment "$MODAL_ENVIRONMENT"
+      - name: Explicitly authorized CPU deployment and URL discovery
+        if: ${{ inputs.deploy_confirm == 'DEPLOY_MODAL_ONLY' && inputs.spend_confirm == 'I_SET_MODAL_SPEND_CAP' }}
         env:
           MODAL_TOKEN_ID: ${{ secrets.MODAL_TOKEN_ID }}
           MODAL_TOKEN_SECRET: ${{ secrets.MODAL_TOKEN_SECRET }}
         run: |
-          test -n "$MODAL_TOKEN_ID" || { echo 'MODAL_DEPLOY_HOLD: missing token id'; exit 3; }
-          test -n "$MODAL_TOKEN_SECRET" || { echo 'MODAL_DEPLOY_HOLD: missing token secret'; exit 3; }
-      - name: Deploy reviewed source to Modal, never Vercel
-        env:
-          MODAL_TOKEN_ID: ${{ secrets.MODAL_TOKEN_ID }}
-          MODAL_TOKEN_SECRET: ${{ secrets.MODAL_TOKEN_SECRET }}
-        run: |
-          python -m pip install 'modal>=1.1,<2'
-          modal deploy agent-commons/modal/entrypoint.py
+          modal deploy --env "$MODAL_ENVIRONMENT" --tag "$REVIEWED_SHA" agent-commons/modal/entrypoint.py
+          python agent-commons/modal/preflight.py --url --environment "$MODAL_ENVIRONMENT"

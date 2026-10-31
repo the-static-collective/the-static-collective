@@ -71,7 +71,7 @@ def provider_ready(provider: str) -> bool:
     if provider == "groq":
         return len(os.getenv("GROQ_API_KEY", "")) >= 12
     if provider == "gemini":
-        return len(os.getenv("GEMINI_API_KEY", os.getenv("Gemini_API_Key", ""))) >= 12
+        return len((os.getenv("GEMINI_API_KEY") or os.getenv("Gemini_API_Key", ""))) >= 12
     if provider == "openrouter":
         return len(os.getenv("OPENROUTER_API_KEY", "")) >= 12
     return bool(os.getenv("COMMONS_CLOUDFLARE_METERED_ACK") == "1"
@@ -79,12 +79,18 @@ def provider_ready(provider: str) -> bool:
                 and re.fullmatch(r"[a-fA-F0-9]{32}", os.getenv("CLOUDFLARE_ACCOUNT_ID", "")))
 
 
+class UpstreamHTTPError(RuntimeError):
+    def __init__(self, status: int):
+        self.status = status
+        super().__init__("UPSTREAM_HTTP_" + str(status))
+
+
 async def bounded_json(client: httpx.AsyncClient, method: str, url: str, *, headers=None, payload=None,
                        max_bytes=20000):
     # All URLs are hard-coded by this source module. No visitor-controlled URLs.
     async with client.stream(method, url, headers=headers, json=payload, follow_redirects=False) as response:
         if response.status_code != 200:
-            raise RuntimeError("UPSTREAM_HTTP_" + str(response.status_code))
+            raise UpstreamHTTPError(response.status_code)
         if int(response.headers.get("content-length") or 0) > max_bytes:
             raise RuntimeError("UPSTREAM_RESPONSE_LIMIT")
         chunks = []
@@ -141,7 +147,7 @@ async def invoke_provider(client: httpx.AsyncClient, provider: str, prompt: str)
     if provider == "gemini":
         return await bounded_json(client, "POST", "https://generativelanguage.googleapis.com/v1beta/models/" +
                                   MODELS[provider] + ":generateContent",
-                                  headers={"x-goog-api-key": os.getenv("GEMINI_API_KEY", os.getenv("Gemini_API_Key", ""))},
+                                  headers={"x-goog-api-key": (os.getenv("GEMINI_API_KEY") or os.getenv("Gemini_API_Key", ""))},
                                   payload={"systemInstruction": {"parts": [{"text": SYSTEM}]},
                                            "contents": [{"role": "user", "parts": [{"text": prompt}]}],
                                            "generationConfig": {"responseMimeType": "application/json", "temperature": 0.2,
@@ -246,7 +252,13 @@ def build_app(client_factory: Callable[[], httpx.AsyncClient] | None = None) -> 
 
     @api.post("/mcp")
     async def mcp_proxy(req: Request):
-        if int(req.headers.get("content-length") or 0) > 5500:
+        try:
+            length = int(req.headers.get("content-length") or 0)
+        except ValueError:
+            return refuse("MCP_INVALID_LENGTH", 400)
+        if length < 0:
+            return refuse("MCP_INVALID_LENGTH", 400)
+        if length > 5500:
             return refuse("MCP_BODY_TOO_LARGE", 413)
         raw = await req.body()
         if len(raw) > 5500:
@@ -269,6 +281,12 @@ def build_app(client_factory: Callable[[], httpx.AsyncClient] | None = None) -> 
                                                   "Accept": "application/json, text/event-stream"},
                                          payload=q, max_bytes=24000)
                 return res
+        except UpstreamHTTPError as exc:
+            if exc.status in (401, 403):
+                return refuse("SEAT_AUTH_REJECTED", exc.status)
+            if exc.status == 429:
+                return refuse("SEAT_QUOTA_REJECTED", 429)
+            return refuse("MCP_GATE_HOLD")
         except Exception:
             return refuse("MCP_GATE_HOLD")
 
@@ -276,7 +294,8 @@ def build_app(client_factory: Callable[[], httpx.AsyncClient] | None = None) -> 
     async def party(req: Request):
         operator = os.getenv("COMMONS_OPERATOR_TOKEN", "")
         auth = req.headers.get("authorization", "")
-        if not (len(operator) >= 40 and auth.startswith("Bearer ") and hmac.compare_digest(operator, auth[7:])):
+        if not (TOKEN_RE.fullmatch(operator) and auth.startswith("Bearer ")
+                and TOKEN_RE.fullmatch(auth[7:]) and hmac.compare_digest(operator, auth[7:])):
             return refuse("OPERATOR_AUTH_REQUIRED", 401)
         if req.headers.get("x-commons-explicit-action") != "I_APPROVE_PUBLIC_AI_PARTY":
             return refuse("APPROVAL_REQUIRED", 403)
@@ -298,7 +317,7 @@ def build_app(client_factory: Callable[[], httpx.AsyncClient] | None = None) -> 
         token = seat_for(provider)
         claim_id = None
         called = False
-        closed = False
+        finish_attempted = False
         receipt_id = None
         result_seen = False
         try:
@@ -341,16 +360,19 @@ def build_app(client_factory: Callable[[], httpx.AsyncClient] | None = None) -> 
                 receipt_id = receipt.get("receipt_id")
                 if receipt.get("status") != "HELD_FOR_REVIEW" or not UUID_RE.fullmatch(receipt_id or ""):
                     raise RuntimeError("SUBMISSION_REFUSED")
-                await bounded_json(client, "POST", SUPABASE_BASE + "/agent-commons-party-015/finish",
+                finish_attempted = True
+                finished = await bounded_json(client, "POST", SUPABASE_BASE + "/agent-commons-party-015/finish",
                                    headers={"Authorization": "Bearer " + token},
                                    payload={"claim_id": claim_id, "status": "HELD_SUBMITTED", "message_id": receipt_id},
                                    max_bytes=2400)
-                closed = True
+                if (finished.get("status") != "HELD_SUBMITTED" or finished.get("claim_id") != claim_id
+                        or finished.get("publicly_admitted") is not False):
+                    raise RuntimeError("FINISH_UNCONFIRMED")
                 return {"status": "REAL_PROVIDER_CONTRIBUTION_HELD", "provider": provider, "model": MODELS[provider],
                         "claimId": claim_id, "receiptId": receipt_id, "providerCalls": 1, "publiclyAdmitted": False,
                         "paidFallback": False, "note": "Only human operator may admit this held response."}
         except Exception as e:
-            if claim_id and not closed:
+            if claim_id and not finish_attempted:
                 try:
                     async with client_factory() as client:
                         await bounded_json(client, "POST", SUPABASE_BASE + "/agent-commons-party-015/finish",
@@ -362,7 +384,7 @@ def build_app(client_factory: Callable[[], httpx.AsyncClient] | None = None) -> 
                     pass
             code = str(e)
             safe = next((w for w in ("NO_ADMITTED_CONTEXT", "INVALID_PUBLIC_FEED", "PUBLIC_CONTEXT_LIMIT",
-                                      "CLAIM_REFUSED", "SUBMISSION_REFUSED", "MODEL_JSON_INVALID", "MODEL_SHAPE_INVALID",
+                                      "CLAIM_REFUSED", "SUBMISSION_REFUSED", "FINISH_UNCONFIRMED", "MODEL_JSON_INVALID", "MODEL_SHAPE_INVALID",
                                       "MODEL_FIELD_INVALID", "MODEL_EMPTY_OR_LIMIT") if code.startswith(w)), "PARTY_HOLD")
             return refuse(safe, 503, calls=int(called), provider=provider)
 
