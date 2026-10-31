@@ -1,0 +1,39 @@
+/* HELLO-011. 1999 computer, Midwest kitchen table, and a readable human decision. */
+.jarvis-deck{margin-top:30px;padding:clamp(18px,3.2vw,30px);background:#213a31;color:#f3f0d9;border:2px solid #173127;box-shadow:7px 7px 0 #bed2b7;position:relative;overflow:hidden}
+.jarvis-deck:before{content:"";position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(0deg,transparent 0 5px,rgba(255,255,255,.016) 5px 6px)}
+.jarvis-header{display:flex;align-items:center;flex-wrap:wrap;justify-content:space-between;gap:12px;border-bottom:1px solid #8fa998;padding-bottom:13px;font:700 12px/1.4 ui-monospace,monospace;letter-spacing:.06em}
+.jarvis-header strong{color:#f8d794}
+.jarvis-status{color:#bed4b9;font-weight:450}
+.jarvis-title{font-size:clamp(24px,3.4vw,39px);font-weight:780;letter-spacing:-.042em;line-height:1.17;margin:22px 0 10px}
+.jarvis-deck label{display:block;font-size:14px;line-height:1.5;max-width:650px;color:#d5e7d3;margin-bottom:12px}
+.jarvis-deck textarea{display:block;width:100%;resize:vertical;min-height:110px;font:17px/1.5 system-ui,sans-serif;padding:16px;background:#fffdf5;color:#223e30;border:3px solid #f0ce82;border-radius:2px}
+.jarvis-deck textarea:focus-visible{outline:3px solid #f8d794;outline-offset:4px}
+.jarvis-controls{display:flex;align-items:center;flex-wrap:wrap;gap:12px;margin:14px 0 10px}
+.jarvis-action{font:750 16px system-ui,sans-serif;border:2px solid #f9d48d;border-radius:3px;padding:12px 20px;background:#f9d48d;color:#1c372b;cursor:pointer}
+.jarvis-action:hover{background:#ffe6b7}
+.jarvis-action:focus-visible,.prompt:focus-visible,.jarvis-route:focus-visible{outline:3px solid #ffe6b7;outline-offset:3px}
+.jarvis-gentle{font:650 13px system-ui,sans-serif;color:#ecedd9;background:transparent;border:1px solid #a0b5a7;padding:11px 14px;cursor:pointer;border-radius:3px}
+.jarvis-gentle:hover{background:#395548}
+.prompt-deck{display:flex;gap:8px;flex-wrap:wrap;margin-top:13px}
+.prompt{font:650 12px/1.4 system-ui,sans-serif;border:1px solid #95b69c;color:#e4efd9;background:#305247;cursor:pointer;border-radius:20px;padding:7px 12px}
+.prompt:hover{background:#486c56}
+.jarvis-fine{font:12px/1.6 ui-monospace,monospace;color:#cddbc7;max-width:750px}
+.jarvis-reply{background:#f5f0dd;color:#193c2c;border:2px solid #e1c27e;padding:clamp(18px,3vw,26px);margin-top:22px}
+.jarvis-reply .route-index{font:700 10px/1.4 ui-monospace,monospace;letter-spacing:.09em;color:#4d684c}
+.jarvis-reply h3{font-size:clamp(23px,3vw,30px);margin:0 0 9px;line-height:1.2}
+.jarvis-reply p{max-width:700px;line-height:1.55}
+.jarvis-routes{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin:18px 0}
+.jarvis-route{display:flex;flex-direction:column;gap:10px;min-height:166px;text-decoration:none;border:2px solid #315d47;background:#fffdf7;padding:15px;transition:transform .12s}
+.jarvis-route:hover{transform:translateY(-3px);background:#edf5e9}
+.jarvis-route strong{font-size:19px;line-height:1.2}
+.route-description{font-size:12px;color:#475b4b;line-height:1.45}
+.jarvis-reply .jarvis-note{font:12px/1.6 ui-monospace,monospace}
+.fallback-doors{margin-top:26px}
+.fallback-doors summary{font-size:14px;cursor:pointer;font-weight:700;color:#375940;list-style-position:inside}
+.fallback-doors[open] summary{margin-bottom:15px}
+.fallback-doors .choices{margin-top:12px}
+.recent-paper{padding:21px 25px;border-left:5px solid #a35a38;background:#fbebc8;margin-top:28px}
+.recent-paper p{margin:0 0 10px;line-height:1.5}
+.recent-paper a{font-weight:800}
+@media(max-width:730px){.jarvis-deck{padding:18px}.jarvis-routes{grid-template-columns:1fr}.jarvis-route{min-height:120px}.jarvis-title{font-size:27px}.jarvis-action{width:100%}}
+@media(prefers-reduced-motion:reduce){.jarvis-route{transition:none}}
