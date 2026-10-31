@@ -8,6 +8,7 @@ const panel = $("jarvis-reply");
 const intro = $("jarvis-intro");
 const results = $("jarvis-doors");
 const status = $("jarvis-status");
+const promptStatus = $("jarvis-prompt-status");
 const chips = document.querySelectorAll("[data-prompt]");
 import {suggest} from "./routes.mjs";
 function show(raw){
@@ -26,6 +27,7 @@ function show(raw){
    link.append(eyebrow,heading,description);
    results.append(link);
  });
+ promptStatus.textContent="Local route prepared. Nothing sent.";
  status.textContent="These are suggestions, not matches or promises. Your words stayed in this browser tab; they were not sent to any tool or destination.";
  panel.hidden=false;
  panel.focus();
@@ -33,10 +35,10 @@ function show(raw){
 form.addEventListener("submit",event=>{
  event.preventDefault();
  const question=input.value.trim();
- if(question.length<3){status.textContent="Give me a few words, or choose a sample below.";input.focus();return}
+ if(question.length<3){promptStatus.textContent="Give me a few words, or choose a sample below.";input.focus();return}
  show(question);
 });
-input.addEventListener("input",()=>{panel.hidden=true;status.textContent="Nothing has been sent.";});
+input.addEventListener("input",()=>{panel.hidden=true;promptStatus.textContent="Nothing has been sent.";});
 chips.forEach(button=>button.addEventListener("click",()=>{
  input.value=button.dataset.prompt.slice(0,MAX);
  show(input.value);
@@ -45,4 +47,4 @@ $("jarvis-surprise").addEventListener("click",()=>{
  input.value="";
  show("");
 });
-$("jarvis-restart").addEventListener("click",()=>{panel.hidden=true;input.value="";status.textContent="Nothing has been sent.";input.focus()});
+$("jarvis-restart").addEventListener("click",()=>{panel.hidden=true;input.value="";promptStatus.textContent="Nothing has been sent.";input.focus()});
