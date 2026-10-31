@@ -20,10 +20,10 @@ class TestSite(unittest.TestCase):
     self.assertIn('/explore/',t.links)
     self.assertIn('/for-computers/',t.links)
     self.assertIn('/porch/?kind=offer',t.links)
-    self.assertCountEqual(t.scripts,['application/ld+json','module'])
+    self.assertCountEqual(t.scripts,['application/ld+json','module','module'])
     self.assertIn('noindex,nofollow',s)
   def test_machine_boundary(self):
-    for f in ['for-computers/index.html','llms.txt','.well-known/abundent.json','robots.txt','style.css','explore/index.html','porch/index.html','porch/engine.mjs','porch/app.mjs','porch/porch.css','porch/engine.test.mjs','porch/private-inbox.mjs','feedback/index.html','feedback/widget.mjs','feedback/widget.css','try/index.html','try/demo.mjs','doors/index.html']:
+    for f in ['for-computers/index.html','llms.txt','.well-known/abundent.json','robots.txt','style.css','explore/index.html','porch/index.html','porch/engine.mjs','porch/app.mjs','porch/porch.css','porch/engine.test.mjs','porch/private-inbox.mjs','feedback/index.html','feedback/widget.mjs','feedback/widget.css','try/index.html','try/demo.mjs','doors/index.html','guide/routes.mjs','guide/attendant.mjs','guide/attendant.css','guide/routes.test.mjs']:
       self.assertTrue((root/f).exists(),f)
     data=json.loads((root/'.well-known/abundent.json').read_text())
     self.assertEqual(data['status'],'PUBLIC_STAGING_CANDIDATE')
@@ -64,5 +64,14 @@ class TestSite(unittest.TestCase):
     self.assertIn('id="demo-run"',(root/'try/index.html').read_text())
     self.assertIn('Nothing was submitted, posted, emailed, assigned, or matched.',(root/'try/index.html').read_text())
     self.assertIn('href="/doors/"',(root/'index.html').read_text())
+    homepage=(root/'index.html').read_text()
+    self.assertIn('id="jarvis-form"',homepage)
+    self.assertIn('id="jarvis-reply"',homepage)
+    self.assertIn('href="https://abundent.org/paper/"',homepage)
+    self.assertIn('The porch guide is local-only.',homepage)
+    router=(root/'guide/routes.mjs').read_text()
+    self.assertNotIn('fetch(',router)
+    self.assertNotIn('localStorage',router)
+    self.assertNotIn('sessionStorage',router)
 
 if __name__=='__main__': unittest.main()

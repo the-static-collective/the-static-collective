@@ -25,8 +25,10 @@ jobs:
         run: cd front-door && python -m unittest discover -s tests -v
       - name: Porch note engine unit tests
         run: node --test front-door/porch/engine.test.mjs
+      - name: Porch attendant local route tests
+        run: node --test front-door/guide/routes.test.mjs
       - name: First-party browser scripts parse
-        run: node --check front-door/porch/app.mjs && node --check front-door/porch/private-inbox.mjs && node --check front-door/feedback/widget.mjs && node --check front-door/try/demo.mjs
+        run: node --check front-door/porch/app.mjs && node --check front-door/porch/private-inbox.mjs && node --check front-door/feedback/widget.mjs && node --check front-door/try/demo.mjs && node --check front-door/guide/routes.mjs && node --check front-door/guide/attendant.mjs
 
       - name: Confirm public first-party pages resolve through actual DNS
         run: node front-door/tests/live-http.mjs
