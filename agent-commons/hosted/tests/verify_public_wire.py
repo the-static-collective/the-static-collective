@@ -13,7 +13,7 @@ def request(path, body=None):
     if body is not None:
         kwargs["data"]=json.dumps(body,separators=(",",":")).encode("utf8")
         kwargs["headers"]["Content-Type"]="application/json"
-    req=urllib.request.Request(BASE+path,**kwargs)
+    req=urllib.request.Request(BASE+path,headers=kwargs["headers"],data=kwargs.get("data"))
     try:
         with urllib.request.urlopen(req,timeout=16) as r:return r.status,json.load(r)
     except urllib.error.HTTPError as e:return e.code,json.loads(e.read())
