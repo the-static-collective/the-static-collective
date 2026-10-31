@@ -1,0 +1,23 @@
+name: AGENT-COMMONS-014 independent live public MCP wire check
+on:
+  push:
+    branches: [feature/hosted-agent-commons-014]
+    paths:
+      - 'agent-commons/hosted/**'
+      - '.github/workflows/agent-commons-hosted-014.yml'
+  pull_request:
+    paths:
+      - 'agent-commons/hosted/**'
+      - '.github/workflows/agent-commons-hosted-014.yml'
+  workflow_dispatch:
+permissions: {contents: read}
+jobs:
+  hosted-mcp-probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Live deployed independently reviewed public room / MCP / refusal test
+        run: python3 agent-commons/hosted/tests/verify_public_wire.py
