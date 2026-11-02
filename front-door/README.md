@@ -9,7 +9,7 @@ cd front-door
 python3 -m http.server 8080
 # Open http://localhost:8080/
 python3 -m unittest discover -s tests -v
-node --test porch/engine.test.mjs
+node --test porch/*.test.mjs
 ```
 
 ## Human / computer contract
@@ -30,3 +30,7 @@ Observed 2026-10-30: authoritative NS are Cloudflare; `abundent.org` and `www` a
 ## Own the copy, not people's identities
 
 Keep the retro JAR;VIS visual character as an accent, and let real people's particular needs lead. A link is not a promise of availability, an organization is not necessarily formed, and metadata is not permission.
+
+## NEXT-MOVE-003 · Immediate usefulness (staging)
+
+The human porch now gives a **local ten-minute next move**, separately from its unsent note. Transparent deterministic rules suggest one bounded action, one condition for useful progress, a consent/safety boundary, and an honest return status; a visitor can copy the plan without sending anything. This does not invoke live JAR;VIS models, search volunteers, assign tasks, or prove any field fulfillment. See [USEFUL-WORK-003](docs/USEFUL-WORK-003.md) for the gated path from one useful note to one confirmed human act. This follow-up is stacked on the unmerged front-door feature, not promoted to the apex.
